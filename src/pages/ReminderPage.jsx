@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { REMINDER_DATA } from "../data";
-// THE FIX: Imported our clean SVG icons!
 import { Mic, Square, ArrowLeft } from "lucide-react";
 
 export default function ReminderPage({ t, lang, onBack }) {
@@ -124,14 +123,12 @@ export default function ReminderPage({ t, lang, onBack }) {
 
   return (
     <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col relative overflow-hidden">
-      {/* 1. Header (Fixed at top) */}
       <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-3 relative z-10 shadow-sm">
         {onBack && (
           <button
             onClick={onBack}
             className="p-1 hover:bg-white/10 rounded-full transition-colors mr-1 cursor-pointer"
           >
-            {/* THE FIX: Replaced raw SVG with ArrowLeft */}
             <ArrowLeft size={24} strokeWidth={2.5} />
           </button>
         )}
@@ -145,7 +142,7 @@ export default function ReminderPage({ t, lang, onBack }) {
         </div>
       </div>
 
-      {/* 2. Task List (Scrollable middle section) */}
+      {/* 2. Task List */}
       <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-3 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {reminders.map((rem) => (
           <div
@@ -202,11 +199,11 @@ export default function ReminderPage({ t, lang, onBack }) {
         ))}
       </div>
 
-      {/* 3. Bottom Action Area (Fixed at bottom) */}
-      <div className="shrink-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-20 pb-28 pt-4 px-6 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
-        {/* The Slide-Up Form */}
+      {/* 3. Bottom Action Area */}
+
+      <div className="shrink-0 bg-[#fdfaf5] z-20 pb-28 pt-4 px-6">
         {showAddForm ? (
-          <div className="flex flex-col gap-3 animate-slide-up">
+          <div className="flex flex-col gap-3 animate-slide-up bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
             <input
               type="text"
               placeholder="What do you need to remember?"
@@ -240,7 +237,6 @@ export default function ReminderPage({ t, lang, onBack }) {
                   onClick={startRecording}
                   className="flex-1 bg-[#E8F5F0] text-[#1B5E4B] font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  {/* THE FIX: Replaced Emoji with Mic Icon */}
                   <Mic size={18} strokeWidth={2.5} /> <span>Record Voice</span>
                 </button>
               )}
@@ -249,12 +245,7 @@ export default function ReminderPage({ t, lang, onBack }) {
                   onClick={stopRecording}
                   className="flex-1 bg-red-100 text-red-600 font-bold py-3 rounded-xl flex items-center justify-center gap-2 animate-pulse cursor-pointer"
                 >
-                  {/* THE FIX: Replaced Emoji with filled Square Icon (Stop) */}
-                  <Square
-                    size={16}
-                    fill="currentColor"
-                    strokeWidth={2.5}
-                  />{" "}
+                  <Square size={16} fill="currentColor" strokeWidth={2.5} />{" "}
                   <span>Stop Recording</span>
                 </button>
               )}
