@@ -45,9 +45,6 @@ export default function LoginPage({
           className="bg-white/20 hover:bg-white/30 text-white px-3 py-2 rounded-full cursor-pointer transition-colors flex items-center gap-2 backdrop-blur-sm"
         >
           <Volume2 size={16} strokeWidth={2.5} />
-          <span className="text-[10px] font-extrabold tracking-wide uppercase">
-            Listen
-          </span>
         </button>
       </div>
 
