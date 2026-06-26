@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { REMINDER_DATA } from "../data";
+// THE FIX: Imported our clean SVG icons!
+import { Mic, Square, ArrowLeft } from "lucide-react";
 
 export default function ReminderPage({ t, lang, onBack }) {
   // LANGUAGE & STATE SETUP
@@ -93,7 +95,7 @@ export default function ReminderPage({ t, lang, onBack }) {
     );
   };
 
-  //  UI HELPERS
+  // UI HELPERS
   const getCategoryStyles = (cat) => {
     switch (cat) {
       case "med":
@@ -122,26 +124,15 @@ export default function ReminderPage({ t, lang, onBack }) {
 
   return (
     <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col relative overflow-hidden">
-      {/* Header */}
+      {/* 1. Header (Fixed at top) */}
       <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-3 relative z-10 shadow-sm">
         {onBack && (
           <button
             onClick={onBack}
             className="p-1 hover:bg-white/10 rounded-full transition-colors mr-1 cursor-pointer"
           >
-            <svg
-              className="w-5 h-5 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
+            {/* THE FIX: Replaced raw SVG with ArrowLeft */}
+            <ArrowLeft size={24} strokeWidth={2.5} />
           </button>
         )}
         <div>
@@ -154,8 +145,8 @@ export default function ReminderPage({ t, lang, onBack }) {
         </div>
       </div>
 
-      {/* Task List */}
-      <div className="flex-1 overflow-y-auto px-6 pt-6 pb-24 flex flex-col gap-3 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      {/* 2. Task List (Scrollable middle section) */}
+      <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col gap-3 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {reminders.map((rem) => (
           <div
             key={rem.id}
@@ -178,7 +169,9 @@ export default function ReminderPage({ t, lang, onBack }) {
 
             <div className="flex-1 min-w-0">
               <div
-                className={`font-extrabold text-[15px] leading-tight mb-1 ${rem.done ? "text-gray-500 line-through" : "text-gray-900"}`}
+                className={`font-extrabold text-[15px] leading-tight mb-1 ${
+                  rem.done ? "text-gray-500 line-through" : "text-gray-900"
+                }`}
               >
                 {rem.title}
               </div>
@@ -186,12 +179,13 @@ export default function ReminderPage({ t, lang, onBack }) {
               <div className="w-full flex items-center justify-between mt-1 text-[12px] font-medium text-gray-500">
                 <span>🕐 {rem.time}</span>
                 <span
-                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-md whitespace-nowrap ${getCategoryStyles(rem.cat)}`}
+                  className={`text-[10px] font-extrabold px-2 py-0.5 rounded-md whitespace-nowrap ${getCategoryStyles(
+                    rem.cat,
+                  )}`}
                 >
                   {getCategoryLabel(rem.cat)}
                 </span>
               </div>
-              {/* =================================================================== */}
 
               {/* PLAYBACK: If this reminder has audio, show the player! */}
               {rem.audio && (
@@ -208,11 +202,11 @@ export default function ReminderPage({ t, lang, onBack }) {
         ))}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 backdrop-blur-xl bshadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-20 pb-20">
-        {" "}
+      {/* 3. Bottom Action Area (Fixed at bottom) */}
+      <div className="shrink-0 bg-white/95 backdrop-blur-md border-t border-gray-100 z-20 pb-28 pt-4 px-6 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
         {/* The Slide-Up Form */}
-        {showAddForm && (
-          <div className="p-5 flex flex-col gap-3 animate-slide-up">
+        {showAddForm ? (
+          <div className="flex flex-col gap-3 animate-slide-up">
             <input
               type="text"
               placeholder="What do you need to remember?"
@@ -246,7 +240,8 @@ export default function ReminderPage({ t, lang, onBack }) {
                   onClick={startRecording}
                   className="flex-1 bg-[#E8F5F0] text-[#1B5E4B] font-bold py-3 rounded-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  🎤 <span>Record Voice</span>
+                  {/* THE FIX: Replaced Emoji with Mic Icon */}
+                  <Mic size={18} strokeWidth={2.5} /> <span>Record Voice</span>
                 </button>
               )}
               {isRecording && (
@@ -254,7 +249,13 @@ export default function ReminderPage({ t, lang, onBack }) {
                   onClick={stopRecording}
                   className="flex-1 bg-red-100 text-red-600 font-bold py-3 rounded-xl flex items-center justify-center gap-2 animate-pulse cursor-pointer"
                 >
-                  ⏹️ <span>Stop Recording</span>
+                  {/* THE FIX: Replaced Emoji with filled Square Icon (Stop) */}
+                  <Square
+                    size={16}
+                    fill="currentColor"
+                    strokeWidth={2.5}
+                  />{" "}
+                  <span>Stop Recording</span>
                 </button>
               )}
               {audioUrl && (
@@ -280,23 +281,20 @@ export default function ReminderPage({ t, lang, onBack }) {
               </button>
               <button
                 onClick={handleSaveReminder}
-                className="flex-2 bg-[#1B5E4B] text-white font-extrabold py-3 rounded-xl shadow-md cursor-pointer"
+                className="flex-2 bg-[#1B5E4B] text-white font-extrabold py-3 rounded-xl shadow-md cursor-pointer hover:bg-[#154b3c]"
               >
                 Save Reminder
               </button>
             </div>
           </div>
-        )}
-        {!showAddForm && (
-          <div className="p-6">
-            <button
-              onClick={() => setShowAddForm(true)}
-              className="w-full bg-[#1B5E4B] text-white font-extrabold py-4 rounded-2xl shadow-[0_4px_12px_rgba(27,94,75,0.2)] flex items-center justify-center gap-2 hover:bg-[#154b3c] transition-transform active:scale-95 cursor-pointer"
-            >
-              <span className="text-xl leading-none -mt-0.5">+</span>{" "}
-              {t?.addReminder || "Add Reminder"}
-            </button>
-          </div>
+        ) : (
+          <button
+            onClick={() => setShowAddForm(true)}
+            className="w-full bg-[#1B5E4B] text-white font-extrabold py-4 rounded-2xl shadow-[0_4px_12px_rgba(27,94,75,0.2)] flex items-center justify-center gap-2 hover:bg-[#154b3c] transition-transform active:scale-95 cursor-pointer"
+          >
+            <span className="text-xl leading-none -mt-0.5">+</span>{" "}
+            {t?.addReminder || "Add Reminder"}
+          </button>
         )}
       </div>
     </div>

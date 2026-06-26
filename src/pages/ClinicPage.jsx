@@ -61,6 +61,7 @@ export default function ClinicPage({ t, onBack }) {
         <div className="flex-1 overflow-y-auto bg-white flex flex-col scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {/* Hospital Image Wrapper - Taller for a better native look */}
           <div className="w-full h-64 shrink-0 bg-gray-200 relative">
+            {/* THE FIX: Instantly swaps to your brand logo if the external image fails to load on mobile */}
             <img
               src={
                 selectedClinic.image ||
@@ -68,6 +69,10 @@ export default function ClinicPage({ t, onBack }) {
               }
               alt={selectedClinic.name}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/mama-care.png";
+              }}
             />
           </div>
 
