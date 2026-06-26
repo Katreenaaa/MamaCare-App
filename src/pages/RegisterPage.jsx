@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Volume2, ArrowLeft, Mic } from "lucide-react";
 
-export default function RegisterPage({ onComplete }) {
+export default function RegisterPage({ onComplete, t, language, onBack }) {
   const [formData, setFormData] = useState({
     name: "",
     lmp: "",
@@ -16,16 +17,35 @@ export default function RegisterPage({ onComplete }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [phcWarning, setPhcWarning] = useState(false);
 
+  // Map our language codes to browser TTS language codes
+  const voiceLangMap = {
+    en: "en-NG",
+    yo: "yo-NG",
+    ha: "ha-NG",
+    ig: "ig-NG",
+    pc: "en-NG",
+  };
+
+  // 🔊 Text-To-Speech (Reads instructions to the user)
+  const handleSpeak = () => {
+    window.speechSynthesis.cancel();
+    const textToRead =
+      t?.registerAudio ||
+      "Please enter your details like your name, weeks pregnant, and location so we can personalize your journey.";
+    const utterance = new SpeechSynthesisUtterance(textToRead);
+    utterance.lang = voiceLangMap[language] || "en-NG";
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // Clear warnings and errors when the user starts typing again
+
     setErrorMessage("");
     setPhcWarning(false);
   };
 
-  // Real Web Speech API implementation
+  // 🎤 Real Web Speech API implementation (Speech-to-Text)
   const handleVoiceInput = (field) => {
-    // Check if the browser supports Speech Recognition
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -38,14 +58,13 @@ export default function RegisterPage({ onComplete }) {
 
     if (recordingField) return;
 
-    // Clear warnings when using voice input
     setErrorMessage("");
     setPhcWarning(false);
 
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.interimResults = true;
-    recognition.lang = "en-NG";
+    recognition.lang = voiceLangMap[language] || "en-NG";
 
     recognition.onstart = () => {
       setRecordingField(field);
@@ -56,7 +75,6 @@ export default function RegisterPage({ onComplete }) {
       const currentTranscript = Array.from(event.results)
         .map((result) => result[0].transcript)
         .join("");
-
       setFormData((prev) => ({ ...prev, [field]: currentTranscript }));
     };
 
@@ -106,18 +124,37 @@ export default function RegisterPage({ onComplete }) {
   };
 
   return (
-    <div className="h-full bg-[#FDFAF5] flex flex-col">
-      {/* Header */}
-      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white">
-        <h2 className="text-[26px] font-extrabold tracking-tight mb-1.5 leading-tight">
-          Create Your Profile
-        </h2>
-        <p className="text-[13px] text-white/90 leading-snug">
-          Help us personalize your care journey
-        </p>
+    <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col relative z-10 overflow-hidden">
+      {/* 1. FIXED HEADER */}
+      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center justify-between z-20 shadow-sm relative">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onBack}
+            className="p-1 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+          >
+            <ArrowLeft size={24} strokeWidth={2.5} />
+          </button>
+          <div className="flex flex-col">
+            <h2 className="text-[24px] font-extrabold tracking-tight leading-tight">
+              {t?.createAccount || "Create Profile"}
+            </h2>
+            <p className="text-[12px] text-white/80 mt-0.5">
+              Personalize your care journey
+            </p>
+          </div>
+        </div>
+
+        {/* Listen Button */}
+        <button
+          onClick={handleSpeak}
+          className="bg-white/20 hover:bg-white/30 text-white px-3 py-2 rounded-full cursor-pointer transition-colors flex items-center gap-2 backdrop-blur-sm"
+        >
+          <Volume2 size={16} strokeWidth={2.5} />
+        </button>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 pt-6 pb-4 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+      {/* 2. SCROLLABLE FORM AREA */}
+      <div className="flex-1 overflow-y-auto px-6 pt-6 pb-6 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {/* Error Notification */}
         {errorMessage && (
           <div className="bg-red-50 text-red-600 border border-red-100 p-3 rounded-xl text-sm font-bold mb-4 animate-pulse">
@@ -139,8 +176,8 @@ export default function RegisterPage({ onComplete }) {
         <form id="register-form" onSubmit={handleSubmit} className="space-y-4">
           {/* Full Name */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
-              Full Name
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
+              {t?.fullName || "Full Name"}
             </label>
             <div className="relative flex items-center">
               <input
@@ -151,9 +188,9 @@ export default function RegisterPage({ onComplete }) {
                 placeholder={
                   recordingField === "name"
                     ? "Listening..."
-                    : "e.g. Amina Ibrahim"
+                    : t?.namePlaceholder || "e.g. Amina Balogun"
                 }
-                className={`w-full bg-white border border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
+                className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
                   recordingField === "name"
                     ? "text-[#1B5E4B] font-semibold bg-[#E8F5F0] border-[#1B5E4B]"
                     : ""
@@ -165,23 +202,17 @@ export default function RegisterPage({ onComplete }) {
                 className={`absolute right-4 p-1 rounded-full transition-colors ${
                   recordingField === "name"
                     ? "text-red-500 animate-pulse"
-                    : "text-gray-500 hover:text-[#1B5E4B]"
+                    : "text-gray-400 hover:text-[#1B5E4B]"
                 }`}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                </svg>
+                <Mic size={20} strokeWidth={2.5} />
               </button>
             </div>
           </div>
 
           {/* Last Menstrual Period */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
               Last Menstrual Period (LMP)
             </label>
             <div className="relative flex items-center">
@@ -190,7 +221,7 @@ export default function RegisterPage({ onComplete }) {
                 name="lmp"
                 value={formData.lmp}
                 onChange={handleChange}
-                className={`w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors ${
+                className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors ${
                   formData.lmp ? "text-gray-900" : "text-gray-400"
                 }`}
               />
@@ -199,19 +230,21 @@ export default function RegisterPage({ onComplete }) {
 
           {/* How far along (Week) */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
-              How far along are you? (Weeks)
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
+              {t?.weeksPregnant || "How far along are you? (Weeks)"}
             </label>
             <div className="relative flex items-center">
               <input
                 type="number"
                 name="week"
+                min="1"
+                max="42"
                 value={formData.week}
                 onChange={handleChange}
                 placeholder={
                   recordingField === "week" ? "Listening..." : "e.g. 22"
                 }
-                className={`w-full bg-white border border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
+                className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
                   recordingField === "week"
                     ? "text-[#1B5E4B] font-semibold bg-[#E8F5F0] border-[#1B5E4B]"
                     : ""
@@ -223,52 +256,47 @@ export default function RegisterPage({ onComplete }) {
                 className={`absolute right-4 p-1 rounded-full transition-colors ${
                   recordingField === "week"
                     ? "text-red-500 animate-pulse"
-                    : "text-gray-500 hover:text-[#1B5E4B]"
+                    : "text-gray-400 hover:text-[#1B5E4B]"
                 }`}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                </svg>
+                <Mic size={20} strokeWidth={2.5} />
               </button>
             </div>
           </div>
 
           {/* State */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
-              State
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
+              {t?.stateLocation || "State"}
             </label>
             <select
               name="state"
               value={formData.state}
               onChange={handleChange}
-              className={`w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors appearance-none ${
+              className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors appearance-none ${
                 formData.state ? "text-gray-900" : "text-gray-400"
               }`}
             >
               <option value="" disabled>
                 Select state...
               </option>
-              <option value="lagos">Lagos</option>
-              <option value="kano">Kano</option>
-              <option value="rivers">Rivers</option>
+              <option value="Lagos">Lagos</option>
+              <option value="Kano">Kano</option>
+              <option value="Rivers">Rivers</option>
+              <option value="FCT">Abuja (FCT)</option>
             </select>
           </div>
 
           {/* LGA */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
               Local Government Area (LGA)
             </label>
             <select
               name="lga"
               value={formData.lga}
               onChange={handleChange}
-              className={`w-full bg-white border border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors appearance-none ${
+              className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl px-4 py-3.5 text-[14px] focus:outline-none focus:border-[#1B5E4B] transition-colors appearance-none ${
                 formData.lga ? "text-gray-900" : "text-gray-400"
               }`}
             >
@@ -283,7 +311,7 @@ export default function RegisterPage({ onComplete }) {
 
           {/* Primary Healthcare Center */}
           <div>
-            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5">
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
               Primary Healthcare Center
             </label>
             <div className="relative flex items-center">
@@ -297,7 +325,7 @@ export default function RegisterPage({ onComplete }) {
                     ? "Listening..."
                     : "e.g. PHC Surulere"
                 }
-                className={`w-full bg-white border border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
+                className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
                   recordingField === "phc"
                     ? "text-[#1B5E4B] font-semibold bg-[#E8F5F0] border-[#1B5E4B]"
                     : ""
@@ -309,32 +337,26 @@ export default function RegisterPage({ onComplete }) {
                 className={`absolute right-4 p-1 rounded-full transition-colors ${
                   recordingField === "phc"
                     ? "text-red-500 animate-pulse"
-                    : "text-gray-500 hover:text-[#1B5E4B]"
+                    : "text-gray-400 hover:text-[#1B5E4B]"
                 }`}
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                </svg>
+                <Mic size={20} strokeWidth={2.5} />
               </button>
             </div>
           </div>
         </form>
       </div>
 
-      {/* Action Button */}
-      <div className="shrink-0 px-6 pb-10 pt-4 bg-[#FDFAF5]">
+      {/* 3. ACTION BUTTON */}
+      <div className="shrink-0 px-6 pb-10 pt-4 bg-[#fdfaf5] shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-20">
         <button
           form="register-form"
           type="submit"
-          className="w-full font-bold py-4 rounded-2xl text-[15px] bg-[#1B5E4B] text-white shadow-[0_4px_12px_rgba(27,94,75,0.2)] hover:bg-[#154b3c] transition-colors"
+          className="w-full font-extrabold py-4 rounded-2xl text-[15px] bg-[#1B5E4B] text-white shadow-[0_4px_12px_rgba(27,94,75,0.15)] hover:bg-[#154b3c] active:scale-95 transition-all cursor-pointer"
         >
           {phcWarning
             ? "Skip & Complete Registration ➔"
-            : "Complete Registration ➔"}
+            : t?.startJourney || "Complete Registration ➔"}
         </button>
       </div>
     </div>

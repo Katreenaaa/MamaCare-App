@@ -1,5 +1,18 @@
 import { useState } from "react";
 import { useSpeech } from "../hooks/useSpeech";
+import {
+  Globe,
+  Bell,
+  Building2,
+  UserPen,
+  LogOut,
+  Mic,
+  // eslint-disable-next-line no-unused-vars
+  Square,
+  // eslint-disable-next-line no-unused-vars
+  X,
+  ChevronRight,
+} from "lucide-react";
 
 export default function SettingsPage({
   user,
@@ -71,10 +84,9 @@ export default function SettingsPage({
   // ==========================================
   if (isEditing) {
     return (
-      // Reduced pb-28 to pb-24 to lower the whole container closer to the nav bar
-      <div className="h-full bg-[#FDFAF5] flex flex-col pb-24">
-        {/* Header with Back Button */}
-        <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-3">
+      <div className="h-full min-h-full flex-1 flex flex-col bg-[#fdfaf5] overflow-hidden">
+        {/* 1. FIXED HEADER */}
+        <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-3 shadow-sm z-20">
           <button
             onClick={() => {
               if (isRecording) stopRecording();
@@ -101,7 +113,7 @@ export default function SettingsPage({
           </h2>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6 pt-6 pb-2 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex-1 overflow-y-auto px-6 pt-6 pb-6 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <form id="edit-form" onSubmit={handleSave} className="space-y-4">
             {/* Full Name */}
             <div>
@@ -134,13 +146,7 @@ export default function SettingsPage({
                       : "text-gray-400 hover:text-[#1B5E4B]"
                   }`}
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                  </svg>
+                  <Mic size={20} strokeWidth={2.5} />
                 </button>
               </div>
             </div>
@@ -174,13 +180,7 @@ export default function SettingsPage({
                       : "text-gray-400 hover:text-[#1B5E4B]"
                   }`}
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                  </svg>
+                  <Mic size={20} strokeWidth={2.5} />
                 </button>
               </div>
             </div>
@@ -256,24 +256,18 @@ export default function SettingsPage({
                       : "text-gray-400 hover:text-[#1B5E4B]"
                   }`}
                 >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.39-.9.88v.2c0 2.82-2.34 5.12-5.01 5.12-2.67 0-5.01-2.3-5.01-5.12v-.2c0-.49-.41-.88-.9-.88s-.9.39-.9.88v.2c0 3.35 2.62 6.13 5.91 6.64v2.58h-2.5c-.5 0-.9.4-.9.9s.4.9.9.9h6.82c.5 0 .9-.4.9-.9s-.4-.9-.9-.9h-2.5v-2.58c3.29-.51 5.91-3.29 5.91-6.64v-.2c0-.49-.41-.88-.9-.88z" />
-                  </svg>
+                  <Mic size={20} strokeWidth={2.5} />
                 </button>
               </div>
             </div>
           </form>
         </div>
 
-        <div className="shrink-0 px-6 pt-2 pb-0 bg-[#FDFAF5]">
+        <div className="shrink-0 px-6 pt-4 pb-28 bg-[#fdfaf5] shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-20">
           <button
             form="edit-form"
             type="submit"
-            className="w-full font-extrabold py-4 rounded-2xl text-[15px] bg-[#1B5E4B] text-white shadow-[0_4px_12px_rgba(27,94,75,0.2)] hover:bg-[#154b3c] transition-colors"
+            className="w-full font-extrabold py-4 rounded-2xl text-[15px] bg-[#1B5E4B] text-white shadow-[0_4px_12px_rgba(27,94,75,0.2)] hover:bg-[#154b3c] active:scale-95 transition-all cursor-pointer"
           >
             Save Changes
           </button>
@@ -286,13 +280,13 @@ export default function SettingsPage({
   // VIEW: MAIN SETTINGS PAGE
   // ==========================================
   return (
-    <div className="h-full bg-[#FDFAF5] flex flex-col overflow-y-auto pb-28 scrollbar-none">
-      {/* Header */}
-      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white">
+    <div className="h-full min-h-full flex-1 flex flex-col bg-[#fdfaf5] overflow-hidden relative">
+      {/* 1. FIXED HEADER */}
+      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white shadow-sm z-20">
         <h2 className="text-[26px] font-extrabold tracking-tight">Settings</h2>
       </div>
 
-      <div className="px-6 pt-6">
+      <div className="flex-1 overflow-y-auto px-6 pt-6 pb-28 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {/* User Info Card */}
         <div className="bg-white p-4 rounded-[20px] border-[1.5px] border-gray-100 shadow-sm flex items-center gap-4 mb-8">
           <div className="w-12 h-12 shrink-0 bg-[#1B5E4B] rounded-full flex items-center justify-center text-white text-[20px] font-extrabold">
@@ -314,10 +308,10 @@ export default function SettingsPage({
         </div>
         <div className="space-y-3 mb-8">
           {/* Language Item */}
-          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer relative hover:border-[#1B5E4B]/30 transition-colors">
+          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer relative hover:border-blue-200 transition-colors">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 shrink-0 bg-[#EBF4FF] rounded-xl flex items-center justify-center text-xl">
-                🌐
+              <div className="w-10 h-10 shrink-0 bg-[#EBF4FF] rounded-xl flex items-center justify-center">
+                <Globe className="text-blue-500" size={20} strokeWidth={2.5} />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-[15px] text-gray-900 leading-tight">
@@ -329,21 +323,8 @@ export default function SettingsPage({
               </div>
             </div>
             <div className="text-gray-400">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <ChevronRight size={20} strokeWidth={2.5} />
             </div>
-
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
@@ -358,10 +339,10 @@ export default function SettingsPage({
           </div>
 
           {/* Notifications Item */}
-          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-[#1B5E4B]/30 transition-colors">
+          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-orange-200 transition-colors">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 shrink-0 bg-[#FFF6E5] rounded-xl flex items-center justify-center text-xl">
-                🔔
+              <div className="w-10 h-10 shrink-0 bg-[#FFF6E5] rounded-xl flex items-center justify-center">
+                <Bell className="text-orange-500" size={20} strokeWidth={2.5} />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-[15px] text-gray-900 leading-tight">
@@ -373,31 +354,23 @@ export default function SettingsPage({
               </div>
             </div>
             <div className="text-gray-400">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <ChevronRight size={20} strokeWidth={2.5} />
             </div>
           </div>
 
           {/* Primary Healthcare Center Item */}
-          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-[#1B5E4B]/30 transition-colors">
+          <div className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-purple-200 transition-colors">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 shrink-0 bg-[#F3EEFA] rounded-xl flex items-center justify-center text-xl">
-                🏥
+              <div className="w-10 h-10 shrink-0 bg-[#F3EEFA] rounded-xl flex items-center justify-center">
+                <Building2
+                  className="text-purple-500"
+                  size={20}
+                  strokeWidth={2.5}
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-[15px] text-gray-900 leading-tight">
-                  Primary Healthcare Center
+                  Healthcare Center
                 </span>
                 <span className="text-[13px] text-gray-500 mt-0.5">
                   {user?.phc || "Not set"}
@@ -405,19 +378,7 @@ export default function SettingsPage({
               </div>
             </div>
             <div className="text-gray-400">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <ChevronRight size={20} strokeWidth={2.5} />
             </div>
           </div>
         </div>
@@ -430,30 +391,22 @@ export default function SettingsPage({
           {/* Edit Profile Item */}
           <div
             onClick={() => setIsEditing(true)}
-            className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-[#1B5E4B]/30 transition-colors"
+            className="bg-white rounded-[20px] border-[1.5px] border-gray-100 shadow-sm p-4 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-colors"
           >
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 shrink-0 bg-[#F3F4F6] rounded-xl flex items-center justify-center text-xl">
-                📝
+              <div className="w-10 h-10 shrink-0 bg-[#F3F4F6] rounded-xl flex items-center justify-center">
+                <UserPen
+                  className="text-gray-600"
+                  size={20}
+                  strokeWidth={2.5}
+                />
               </div>
               <span className="font-extrabold text-[15px] text-gray-900">
                 Edit Profile
               </span>
             </div>
             <div className="text-gray-400">
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
+              <ChevronRight size={20} strokeWidth={2.5} />
             </div>
           </div>
         </div>
@@ -461,9 +414,9 @@ export default function SettingsPage({
         {/* Logout Button */}
         <button
           onClick={onLogout}
-          className="w-full bg-[#FFF6F5] text-[#E8614A] border-[1.5px] border-[#E8614A] font-extrabold py-4 rounded-[20px] flex items-center justify-center gap-2 transition-colors hover:bg-[#FDEBE8]"
+          className="w-full bg-[#FFF6F5] text-[#E8614A] border-[1.5px] border-[#FDEBE8] font-extrabold py-4 rounded-[20px] flex items-center justify-center gap-2 transition-colors hover:border-[#E8614A] hover:bg-[#FDEBE8] cursor-pointer"
         >
-          <span className="text-lg">🚪</span> Log Out
+          <LogOut size={20} strokeWidth={2.5} /> Log Out
         </button>
       </div>
     </div>

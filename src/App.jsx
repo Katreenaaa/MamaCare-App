@@ -6,10 +6,9 @@ import { usePersistentState } from "./hooks/usePersistentState";
 // Auth Flow Pages
 import WelcomePage from "./pages/WelcomePage";
 import LanguagePage from "./pages/LanguagePage";
-import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import LogoutPage from "./pages/LogoutPage";
-import EmergencyPage from "./pages/EmergencyPage"; // Fixed import name if necessary
+import EmergencyPage from "./pages/EmergencyPage";
+import LoginPage from "./pages/LoginPage";
 
 // Main Pages
 import Dashboard from "./pages/Dashboard";
@@ -38,7 +37,7 @@ export default function App() {
 
   const handleLogout = () => {
     setUser(null);
-    setActiveScreen("logout");
+    setActiveScreen("welcome");
   };
 
   const isAuthPage = [
@@ -50,37 +49,53 @@ export default function App() {
   ].includes(activeScreen);
 
   return (
-    <div className="min-h-screen bg-gray-200 flex items-center justify-center font-sans">
-      <div className="w-full h-dvh md:w-97.5 md:h-200 bg-[#FDFAF5] md:rounded-[40px] shadow-2xl overflow-hidden relative flex flex-col md:border-8 md:border-gray-900 mx-auto">
-        <div className="flex-1 overflow-y-auto overflow-x-hidden relative scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+    <div className="min-h-screen bg-gray-200 flex justify-center font-sans overflow-hidden">
+      {/* 
+        THE DEVICE CONTAINER:
+        TO remember: sm:max-w-[420px] -> Fills 100% width on phones, caps at 420px on laptops!
+       
+      */}
+      <div className="w-full sm:max-w-105 flex flex-col bg-[#fdfaf5] relative shadow-2xl overflow-hidden sm:border-x border-gray-300">
+        {/* SCROLLING WRAPPER */}
+        <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden relative scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {/* === AUTH FLOW === */}
           {activeScreen === "welcome" && (
             <WelcomePage onContinue={() => setActiveScreen("language")} />
           )}
+
           {activeScreen === "language" && (
             <LanguagePage
               language={language}
               setLanguage={setLanguage}
               onContinue={() => setActiveScreen("login")}
+              onBack={() => setActiveScreen("welcome")}
             />
           )}
+
           {activeScreen === "login" && (
             <LoginPage
               onLogin={handleLogin}
-              onRegister={() => setActiveScreen("register")}
+              t={t}
+              language={language}
+              onBack={() => setActiveScreen("language")}
+              onGoToRegister={() => setActiveScreen("register")}
             />
           )}
+
           {activeScreen === "register" && (
-            <RegisterPage onComplete={handleLogin} />
-          )}
-          {activeScreen === "logout" && (
-            <LogoutPage onLoginClick={() => setActiveScreen("login")} />
+            <RegisterPage
+              onComplete={handleLogin}
+              t={t}
+              language={language}
+              onBack={() => setActiveScreen("login")}
+            />
           )}
 
           {/* === MAIN APP FLOW === */}
           {activeScreen === "dashboard" && (
             <Dashboard user={user} t={t} navTo={setActiveScreen} />
           )}
+
           {activeScreen === "chat" && (
             <ChatPage
               user={user}
@@ -88,9 +103,11 @@ export default function App() {
               onBack={() => setActiveScreen("dashboard")}
             />
           )}
+
           {activeScreen === "clinic" && (
             <ClinicPage t={t} onBack={() => setActiveScreen("dashboard")} />
           )}
+
           {activeScreen === "reminder" && (
             <ReminderPage
               t={t}
@@ -98,6 +115,7 @@ export default function App() {
               onBack={() => setActiveScreen("dashboard")}
             />
           )}
+
           {activeScreen === "settings" && (
             <SettingsPage
               user={user}
@@ -110,6 +128,7 @@ export default function App() {
               onBack={() => setActiveScreen("dashboard")}
             />
           )}
+
           {activeScreen === "emergency" && (
             <EmergencyPage
               t={t}

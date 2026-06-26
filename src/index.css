@@ -3,9 +3,67 @@
 /* Tailwind v4 */
 @import "tailwindcss";
 
+:root {
+  /* 1. Overrides the default font */
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
 * {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
+}
+
+/* Custom Idle Animations for MamaCare Dashboard */
+
+@keyframes wiggle-pause {
+  0%,
+  80%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  85% {
+    transform: rotate(-7deg) scale(1);
+  }
+  90% {
+    transform: rotate(8deg) scale(1);
+  }
+  95% {
+    transform: rotate(-8deg) scale(1);
+  }
+}
+
+.animate-wiggle-pause {
+  animation: wiggle-pause 4s infinite ease-in-out;
+}
+
+@keyframes sparkle-pause {
+  0%,
+  85%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  90% {
+    transform: scale(1) rotate(15deg);
+    opacity: 0.8;
+  }
+  95% {
+    transform: scale(0.9) rotate(-10deg);
+    opacity: 1;
+  }
+}
+
+.animate-sparkle-pause {
+  animation: sparkle-pause 5s infinite ease-in-out;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {

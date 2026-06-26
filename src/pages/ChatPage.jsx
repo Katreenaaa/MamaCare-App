@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-
 import { useSpeech } from "../hooks/useSpeech";
+import { ArrowLeft, Headset } from "lucide-react";
 
 export default function ChatPage({ user, t, onBack }) {
   const [chatLang, setChatLang] = useState(user?.lang || "en");
@@ -106,37 +106,29 @@ export default function ChatPage({ user, t, onBack }) {
   };
 
   return (
-    <div className="h-full bg-[#FDFAF5] flex flex-col">
-      {/* Header */}
-      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-4 px-4 text-white flex items-center gap-3">
+    <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col relative overflow-hidden">
+      {/* THE FIX: Header padding matches Dashboard (pt-14 pb-8 px-6) */}
+      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-4 z-20 shadow-sm">
         {onBack && (
           <button
             onClick={onBack}
-            className="p-1 hover:bg-white/10 rounded-full transition-colors mr-1"
+            className="p-1 hover:bg-white/10 rounded-full transition-colors cursor-pointer -ml-2"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
+            <ArrowLeft size={24} strokeWidth={2.5} />
           </button>
         )}
-        <div className="w-9.5 h-9.5 shrink-0 bg-[#729A8C] rounded-full flex items-center justify-center text-[20px]">
-          🌿
+
+        {/* AI ASSISTANT AVATAR */}
+        <div className="w-12 h-12 shrink-0 bg-white/20 rounded-full flex items-center justify-center border-2 border-white/30 shadow-sm">
+          <Headset size={24} className="text-white" strokeWidth={2.5} />
         </div>
-        <div>
-          <h3 className="font-extrabold text-[15px] leading-tight">
+
+        <div className="flex flex-col justify-center">
+          {/* THE FIX: Font size increased to 24px to match other pages */}
+          <h3 className="font-extrabold text-[24px] leading-tight tracking-tight">
             MamaCare AI
           </h3>
-          <p className="text-[11px] text-white/80 mt-0.5">
+          <p className="text-[13px] text-white/80 mt-0.5 font-medium">
             Responding in {displayLang}
           </p>
         </div>
@@ -165,14 +157,14 @@ export default function ChatPage({ user, t, onBack }) {
           </select>
         </div>
 
-        <div className="flex flex-col gap-5 pb-4">
+        <div className="flex flex-col gap-5 pb-6">
           {messages.map((msg) => (
             <div
               key={msg.id}
               className={`max-w-[85%] ${msg.role === "ai" ? "self-start" : "self-end"}`}
             >
               <div
-                className={`p-3.5 text-[13.5px] leading-relaxed relative group ${
+                className={`p-3.5 text-[14px] leading-relaxed relative group ${
                   msg.role === "ai"
                     ? "bg-white border-[1.5px] border-gray-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] text-gray-800 rounded-[20px] rounded-tl-sm"
                     : "bg-[#1B5E4B] text-white rounded-[20px] rounded-tr-sm shadow-sm"
@@ -201,10 +193,10 @@ export default function ChatPage({ user, t, onBack }) {
       </div>
 
       {/* Input Area */}
-      <div className="shrink-0 bg-white border-t border-gray-100 p-3 flex gap-2 items-center pb-5">
+      <div className="shrink-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-3 flex gap-2 items-center pb-28 z-20 relative">
         <input
           type="text"
-          className="flex-1 bg-white border-[1.5px] border-gray-200 rounded-full py-3 px-4 text-[13px] text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#1B5E4B] transition-colors"
+          className="flex-1 bg-white border-[1.5px] border-gray-200 rounded-full py-3.5 px-4 text-[14px] text-gray-900 placeholder:text-gray-400 outline-none focus:border-[#1B5E4B] transition-colors"
           placeholder={isRecording ? "Listening..." : "Ask me anything..."}
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
@@ -214,7 +206,7 @@ export default function ChatPage({ user, t, onBack }) {
         {isSpeaking && (
           <button
             onClick={stopSpeech}
-            className="w-11 h-11 shrink-0 rounded-full flex items-center justify-center bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors animate-pulse"
+            className="w-12 h-12 shrink-0 rounded-full flex items-center justify-center bg-orange-100 text-orange-600 hover:bg-orange-200 transition-colors animate-pulse cursor-pointer"
             title="Mute Audio"
           >
             🔇
@@ -224,7 +216,7 @@ export default function ChatPage({ user, t, onBack }) {
         {/* Mic Button */}
         <button
           onClick={toggleMic}
-          className={`w-11 h-11 shrink-0 rounded-full flex items-center justify-center transition-colors ${
+          className={`w-12 h-12 shrink-0 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
             isRecording
               ? "bg-red-100 text-red-500 animate-pulse"
               : "bg-[#E8F5F0] text-[#1B5E4B] hover:bg-[#d5ebe2]"
@@ -239,7 +231,7 @@ export default function ChatPage({ user, t, onBack }) {
         <button
           onClick={handleSend}
           disabled={!inputText.trim() && !isRecording}
-          className="w-11 h-11 shrink-0 bg-[#1B5E4B] text-white rounded-full flex items-center justify-center hover:bg-[#154b3c] transition-colors disabled:opacity-50"
+          className="w-12 h-12 shrink-0 bg-[#1B5E4B] text-white rounded-full flex items-center justify-center hover:bg-[#154b3c] transition-colors disabled:opacity-50 cursor-pointer"
         >
           <svg className="w-5 h-5 ml-1" fill="currentColor" viewBox="0 0 24 24">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />

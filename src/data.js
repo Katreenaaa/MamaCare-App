@@ -9,6 +9,20 @@ export const TRANSLATIONS = {
     navLoc: "Clinics",
     navSettings: "Settings",
 
+    // Registration & Auth
+    createAccount: "Create Profile",
+    registerAudio:
+      "Please enter your details like your name, weeks pregnant, and location so we can personalize your journey.",
+    fullName: "Full Name",
+    namePlaceholder: "e.g. Amina Balogun",
+    weeksPregnant: "How far along are you? (Weeks)",
+    stateLocation: "State",
+    startJourney: "Complete Registration ➔",
+    loginPrompt: "Continue with your existing profile or create a new one.",
+    welcomeBack: "Welcome Back",
+    or: "OR",
+    createNewAccount: "Create New Account",
+
     // Chat
     chatSub: "Responding in English",
     chatWelcome:
@@ -60,6 +74,20 @@ export const TRANSLATIONS = {
     navChat: "Ìjíròrò",
     navLoc: "Ilé-ìwòsàn",
     navSettings: "Ètò",
+
+    // Registration & Auth
+    createAccount: "Ṣẹ̀dá Àkọọ́lẹ̀",
+    registerAudio:
+      "Jọ̀wọ́ tẹ àwọn kúlẹ̀kúlẹ̀ rẹ bíi orúkọ, ọ̀sẹ̀ oyún rẹ, àti ibi tí o wà kí a lè ṣe ètò ìtọ́jú rẹ.",
+    fullName: "Orúkọ Kíkún",
+    namePlaceholder: "Bí àpẹẹrẹ. Amina Balogun",
+    weeksPregnant: "Ọ̀sẹ̀ mélòó ni oyún rẹ?",
+    stateLocation: "Ìpínlẹ̀",
+    startJourney: "Parí Ìforúkọsílẹ̀ ➔",
+    loginPrompt: "Tẹ̀síwájú pẹ̀lú àkọọ́lẹ̀ rẹ tàbí ṣẹ̀dá tuntun.",
+    welcomeBack: "Ẹ Káabọ̀",
+    or: "TÀBÍ",
+    createNewAccount: "Ṣẹ̀dá Àkọọ́lẹ̀ Tuntun",
 
     // Chat
     chatSub: "Ń dáhùn ní Yorùbá",
@@ -113,6 +141,20 @@ export const TRANSLATIONS = {
     navLoc: "Asibiti",
     navSettings: "Tsari",
 
+    // Registration & Auth
+    createAccount: "Ƙirƙiri Asusu",
+    registerAudio:
+      "Don Allah shigar da bayananku kamar suna, makonnin ciki, da inda kuke don mu tsara tafiyar ku.",
+    fullName: "Cikakken Suna",
+    namePlaceholder: "Misali. Amina Balogun",
+    weeksPregnant: "Cikin ki ya kai makonni nawa?",
+    stateLocation: "Jiha",
+    startJourney: "Kammala Rijista ➔",
+    loginPrompt: "Ci gaba da asusunku ko ƙirƙirar sabo.",
+    welcomeBack: "Barka da Dawowa",
+    or: "KO",
+    createNewAccount: "Ƙirƙiri Sabon Asusu",
+
     // Chat
     chatSub: "Amsa cikin Hausa",
     chatWelcome:
@@ -164,6 +206,20 @@ export const TRANSLATIONS = {
     navChat: "Mkparịta",
     navLoc: "Ụlọ ọgwụ",
     navSettings: "Ntọala",
+
+    // Registration & Auth
+    createAccount: "Mepụta Profaịlụ",
+    registerAudio:
+      "Biko tinye nkọwa gị dị ka aha gị, izu ole ime gị dị, yana ebe ị nọ ka anyị nwee ike hazie nlekọta gị.",
+    fullName: "Aha Gị Nile",
+    namePlaceholder: "Dịka ọmụmaatụ. Amina Balogun",
+    weeksPregnant: "Ime gị dị izu ole?",
+    stateLocation: "Steeti",
+    startJourney: "Mechaa Ndebanye Aha ➔",
+    loginPrompt: "Gaa n'ihu na profaịlụ gị ma ọ bụ mepụta nke ọhụrụ.",
+    welcomeBack: "Nnọọ",
+    or: "MA Ọ BỤ",
+    createNewAccount: "Mepụta Akaụntụ Ọhụrụ",
 
     // Chat
     chatSub: "Na-azaghachi n'Igbo",
@@ -217,6 +273,20 @@ export const TRANSLATIONS = {
     navLoc: "Hospital",
     navSettings: "Settings",
 
+    // Registration & Auth
+    createAccount: "Create Profile",
+    registerAudio:
+      "Abeg put your details like your name, how many weeks your belle be, and where you dey make we fit plan your journey well.",
+    fullName: "Your Full Name",
+    namePlaceholder: "E.g. Amina Balogun",
+    weeksPregnant: "How many weeks your belle be?",
+    stateLocation: "State",
+    startJourney: "Finish Registration ➔",
+    loginPrompt: "Continue with your profile or create new one.",
+    welcomeBack: "Welcome Back",
+    or: "OR",
+    createNewAccount: "Create New Account",
+
     // Chat
     chatSub: "Dey respond for Pidgin",
     chatWelcome:
@@ -261,51 +331,56 @@ export const TRANSLATIONS = {
   },
 };
 
+// 1. STATE & LGA DATABASE (Hackathon Demo Data)
+export const NIGERIA_LOCATIONS = {
+  Lagos: ["Ikeja", "Surulere", "Eti-Osa", "Alimosho", "Yaba"],
+  FCT: ["Abuja Municipal", "Bwari", "Gwagwalada", "Kuje"],
+  Kano: ["Kano Municipal", "Dala", "Gwale", "Tarauni"],
+};
+
+// 2. UPGRADED CLINICS DATABASE
 export const CLINICS = [
   {
     id: 1,
-    name: "PHC Surulere",
-    address: "8 Bode Thomas St, Surulere",
-    coords: [6.4975, 3.3475],
+    name: "Surulere Primary Health Centre",
+    state: "Lagos",
     lga: "Surulere",
-    phone: "01-234-5678",
-    dist: "0.8km",
+    address: "Babs Animashaun Rd, Surulere",
+    coords: [6.4952, 3.3515], // Real GPS coordinates
+    dist: "1.2 km away",
+    image:
+      "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+    phone: "0800-LAGOS-HEALTH",
+    hours: "24 Hours",
+    services: "Antenatal, Immunization, Delivery",
   },
   {
     id: 2,
-    name: "Lagos Island General",
-    address: "3 Harvey Rd, Lagos Island",
-    coords: [6.455, 3.4],
-    lga: "Lagos Island",
-    phone: "01-460-3000",
-    dist: "3.2km",
+    name: "Ikeja General Hospital",
+    state: "Lagos",
+    lga: "Ikeja",
+    address: "Oba Akinjobi Way, Ikeja",
+    coords: [6.5965, 3.3421],
+    dist: "4.5 km away",
+    image:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=800&q=80",
+    phone: "01-453-2211",
+    hours: "8:00 AM - 6:00 PM",
+    services: "Specialist Care, Ultrasound, Pharmacy",
   },
   {
     id: 3,
-    name: "LUTH Maternity Unit",
-    address: "Idi-Araba, Surulere",
-    coords: [6.5186, 3.3496],
-    lga: "Surulere",
-    phone: "01-774-4391",
-    dist: "1.4km",
-  },
-  {
-    id: 4,
-    name: "Massey Street Children Hospital",
-    address: "Massey St, Lagos Island",
-    coords: [6.452, 3.395],
-    lga: "Lagos Island",
-    phone: "01-263-1584",
-    dist: "4.1km",
-  },
-  {
-    id: 5,
-    name: "Gbagada General Hospital",
-    address: "Gbagada, Lagos",
-    coords: [6.551, 3.385],
-    lga: "Gbagada",
-    phone: "01-454-1800",
-    dist: "6.7km",
+    name: "Wuse District Hospital",
+    state: "FCT",
+    lga: "Abuja Municipal",
+    address: "Zone 3, Wuse, Abuja",
+    coords: [9.0643, 7.4584],
+    dist: "2.0 km away",
+    image:
+      "https://images.unsplash.com/photo-1538108149393-cebb47acddb2?auto=format&fit=crop&w=800&q=80",
+    phone: "09-234-5678",
+    hours: "24 Hours",
+    services: "Maternity, Surgery, Pediatrics",
   },
 ];
 

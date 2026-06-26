@@ -1,15 +1,16 @@
 const LANG_OPTIONS = [
-  { code: "en", flag: "GB", name: "English", native: "English" },
-  { code: "yo", flag: "NG", name: "Yoruba", native: "Yorùbá" },
-  { code: "ha", flag: "NG", name: "Hausa", native: "Harshen Hausa" },
-  { code: "ig", flag: "NG", name: "Igbo", native: "Asụsụ Igbo" },
-  { code: "pc", flag: "NG", name: "Pidgin", native: "Nigerian Pidgin" },
+  { code: "en", flag: "🇬🇧", name: "English", native: "English" },
+  { code: "yo", flag: "🇳🇬", name: "Yoruba", native: "Yorùbá" },
+  { code: "ha", flag: "🇳🇬", name: "Hausa", native: "Harshen Hausa" },
+  { code: "ig", flag: "🇳🇬", name: "Igbo", native: "Asụsụ Igbo" },
+  { code: "pc", flag: "🇳🇬", name: "Pidgin", native: "Nigerian Pidgin" },
 ];
 
 export default function LanguagePage({ language, setLanguage, onContinue }) {
   return (
-    <div className="h-full bg-[#FDFAF5] flex flex-col">
-      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white">
+    <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col justify-between overflow-hidden">
+      {/* HEADER */}
+      <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white shadow-sm">
         <h2 className="text-[26px] font-extrabold tracking-tight mb-1.5 leading-tight">
           Choose Your Language
         </h2>
@@ -18,49 +19,50 @@ export default function LanguagePage({ language, setLanguage, onContinue }) {
         </p>
       </div>
 
-      {/* Language List  */}
-      <div className="flex-1 overflow-y-auto px-6 pt-8 pb-4 space-y-4">
+      {/* DYNAMIC LIST SPACE */}
+
+      <div className="flex-1 overflow-y-auto px-6 py-6 space-y-3.5 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {LANG_OPTIONS.map((opt) => {
           const isSelected = language === opt.code;
           return (
             <div
               key={opt.code}
               onClick={() => setLanguage(opt.code)}
-              className={`p-4 rounded-2xl border-[1.5px] flex items-center justify-between cursor-pointer transition-all ${
+              className={`p-4 rounded-2xl border-[1.5px] flex items-center justify-between cursor-pointer transition-all active:scale-[0.99] ${
                 isSelected
-                  ? "border-[#1B5E4B] bg-[#E8F5F0]"
-                  : "border-[#E5E7EB] bg-white hover:border-[#1B5E4B]/40"
+                  ? "border-[#1B5E4B] bg-[#E8F5F0] shadow-sm"
+                  : "border-gray-200/80 bg-white hover:border-[#1B5E4B]/40"
               }`}
             >
-              <div className="flex items-center gap-5">
-                <span className="text-[16px] font-bold text-gray-900 w-6 text-center">
+              <div className="flex items-center gap-4">
+                <span className="text-[22px] w-8 text-center shrink-0 flex items-center justify-center">
                   {opt.flag}
                 </span>
                 <div className="flex flex-col">
-                  <span className="font-bold text-[15px] text-gray-900 leading-tight">
+                  <span className="font-extrabold text-[15px] text-gray-900 leading-tight">
                     {opt.name}
                   </span>
-                  <span className="text-[13px] text-gray-400 mt-0.5">
+                  <span className="text-[13px] text-gray-400 mt-0.5 font-medium">
                     {opt.native}
                   </span>
                 </div>
               </div>
 
-              {/* Radio Button */}
+              {/* Radio Option */}
               <div
-                className={`w-6 h-6 rounded-full flex items-center justify-center transition-colors ${
+                className={`w-5 h-5 rounded-full flex items-center justify-center transition-all ${
                   isSelected
-                    ? "bg-[#1B5E4B] border-2 border-[#1B5E4B] text-white"
-                    : "border-2 border-gray-200 bg-transparent"
+                    ? "bg-[#1B5E4B] border-2 border-[#1B5E4B] text-white scale-105"
+                    : "border-2 border-gray-300 bg-transparent"
                 }`}
               >
                 {isSelected && (
                   <svg
-                    className="w-3.5 h-3.5"
+                    className="w-3 h-3"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
-                    strokeWidth={3.5}
+                    strokeWidth={4}
                   >
                     <path
                       strokeLinecap="round"
@@ -75,18 +77,18 @@ export default function LanguagePage({ language, setLanguage, onContinue }) {
         })}
       </div>
 
-      {/* Action Button */}
-      <div className="shrink-0 px-6 pb-10 pt-4 bg-[#FDFAF5]">
+      {/* ACTION BUTTON */}
+      <div className="shrink-0 px-6 pb-10 pt-2 bg-[#fdfaf5]">
         <button
           onClick={onContinue}
           disabled={!language}
-          className={`w-full font-bold py-4 rounded-2xl text-[16px] transition-all ${
+          className={`w-full font-extrabold py-4 rounded-2xl text-[15px] transition-all transform active:scale-95 ${
             language
-              ? "bg-[#1B5E4B] text-white shadow-sm"
-              : "bg-[#94B3A7] text-white cursor-not-allowed"
+              ? "bg-[#1B5E4B] text-white shadow-[0_4px_12px_rgba(27,94,75,0.15)] cursor-pointer"
+              : "bg-[#94B3A7] text-white/80 cursor-not-allowed"
           }`}
         >
-          Continue
+          Continue ➔
         </button>
       </div>
     </div>
