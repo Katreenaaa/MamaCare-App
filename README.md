@@ -197,3 +197,15 @@ While this MVP successfully validates SheGuard AI's voice-first interface and mu
 ---
 
 **SheGuard AI is built with accessibility, multilingual support, and women's safety at its core—bringing AI-powered assistance to everyone, regardless of literacy level, internet quality, or device capability.**
+
+# SheGuard AI 🤰🏽
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+**A Multilingual, Voice-First Maternal Health Companion for Expectant Mothers in Nigeria**
+
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+You are free to use, modify, and distribute this software for educational and development purposes. We strongly encourage other developers to take this concept and adapt it to help vulnerable populations in their own regions.

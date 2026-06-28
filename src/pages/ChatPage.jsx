@@ -107,7 +107,6 @@ export default function ChatPage({ user, t, onBack }) {
 
   return (
     <div className="h-full min-h-full flex-1 bg-[#fdfaf5] flex flex-col relative overflow-hidden">
-      {/* THE FIX: Header padding matches Dashboard (pt-14 pb-8 px-6) */}
       <div className="shrink-0 bg-[#1B5E4B] pt-14 pb-8 px-6 text-white flex items-center gap-4 z-20 shadow-sm">
         {onBack && (
           <button
@@ -124,7 +123,6 @@ export default function ChatPage({ user, t, onBack }) {
         </div>
 
         <div className="flex flex-col justify-center">
-          {/* THE FIX: Font size increased to 24px to match other pages */}
           <h3 className="font-extrabold text-[24px] leading-tight tracking-tight">
             SheGuard AI
           </h3>
