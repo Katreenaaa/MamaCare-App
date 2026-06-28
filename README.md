@@ -14,8 +14,9 @@ You don't need to download anything to try SheGuard! The app is fully deployed a
 🔗 **[Click Here to Open SheGuard on Netlify](https://sheguardapp.netlify.app/)**
 _(Note: For the best experience, view this on a mobile device or use your browser's Developer Tools to simulate a mobile screen)._
 
-**📸 Scan to open on Mobile:** ![SheGuard QR Code](./sheguard-images/qrcode.png)  
-_(Upload your Netlify QR code image to your GitHub repo and replace the path above)_
+**📸 Scan to open on Mobile:**
+![SheGuard QR Code]
+<img src="./sheguard-images/qrcode.png" alt="Scan to open SheGuard" width="150" />
 
 ---
 
@@ -61,7 +62,7 @@ This application was conceived, designed, and built for the HER Hackathon 2026 b
 
 This MVP is structured as a modern React application powered by Vite, utilizing a modular component-based architecture for clean state management and routing. We specifically abstracted heavy business logic (like Voice and Storage) into custom hooks.
 
-````text
+```text
 SheGuard-App/
 ├── public/                 # Static assets (favicons, etc.)
 ├── src/                    # Main application source code
@@ -88,62 +89,111 @@ SheGuard-App/
 └── vite.config.js          # Vite bundler configuration
 
 
-## Core Dependencies & Tech Stack
 
-If you are cloning this repository, running `npm install` will automatically install all necessary packages. The core libraries powering SheGuard AI include:
+```
 
-* **[React.js (Vite)](https://vitejs.dev/)** - Frontend framework for building fast, responsive user interfaces.
+# Core Dependencies & Tech Stack
 
-* **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework used for styling the premium pastel, mobile-first layouts.
+If you're cloning this repository, running `npm install` will automatically install all required dependencies.
 
-* **[Lucide React](https://lucide.dev/)** - Beautiful, consistent SVG iconography used throughout the app.
+The core technologies powering **SheGuard AI** include:
 
-* **[React Leaflet](https://react-leaflet.js.org/) & Leaflet** - Open-source interactive mapping libraries used for the Clinic Locator.
-
-* **Web Speech API** - Native browser API utilized inside our `useSpeech` hook for low-latency dictation and audio reading.
+- **React.js (Vite)** – Fast frontend framework for building responsive user interfaces.
+- **Tailwind CSS** – Utility-first CSS framework used to create the premium pastel, mobile-first design.
+- **Lucide React** – Beautiful, consistent SVG icon library used throughout the application.
+- **React Leaflet & Leaflet** – Open-source interactive mapping libraries powering the Clinic Locator feature.
+- **Web Speech API** – Native browser API used within the custom `useSpeech` hook for low-latency speech recognition and text-to-speech functionality.
 
 ---
 
-##  Getting Started (Run Locally)
+# Getting Started
 
-Want to run the demo on your own machine? Follow these steps:
+Follow these steps to run SheGuard AI locally.
 
-### Prerequisites
-Make sure you have **Node.js (v18+)** and **npm** installed on your computer.
+## Prerequisites
 
-### 1. Clone the Repository
+Ensure you have the following installed:
+
+- **Node.js** (v18 or later)
+- **npm**
+
+---
+
+## 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/KatrinaEmegbagha/SheGuard-App.git](https://github.com/KatrinaEmegbagha/SheGuard-App.git)
+git clone https://github.com/KatrinaEmegbagha/SheGuard-App.git
 cd SheGuard-App
+```
+
+---
 
 ## 2. Install Dependencies
-This command reads the package.json file and installs React, Tailwind, Leaflet, Lucide, and all other required packages.
+
+This command reads the `package.json` file and installs React, Tailwind CSS, Leaflet, Lucide React, and every other required package.
 
 ```bash
 npm install
+```
 
-## 3. Run the Development Server
+---
+
+## 3. Start the Development Server
 
 ```bash
 npm run dev
-Open your browser and navigate to http://localhost:5173 (or the port provided in your terminal).
-To view the mobile layout properly, right-click the page, select Inspect, and click the "Device Toolbar" icon to simulate a mobile screen (e.g., iPhone 12 Pro).
+```
 
+After the development server starts, open your browser and navigate to:
 
-## Future Roadmap (Beyond the MVP)
-* **While this web demo successfully validates the voice-first UI and  translation routing, our vision for a production-ready SheGuard includes:
+```
+http://localhost:5173
+```
 
-* **Native Mobile App (React Native): Migrating the codebase to Expo/React Native for true offline-first capabilities and push notifications.
+_(or the local URL displayed in your terminal if a different port is assigned)._
 
-* **Real-Time AI Voice Streaming (LiveKit): Integrating LiveKit WebRTC and Google Gemini 2.5 Native Audio for millisecond-latency, interruptible AI conversations.
+### Viewing the Mobile Experience
 
-* **Cloud Backend (Appwrite): Implementing secure user authentication and encrypted health journal syncing.
+SheGuard AI is designed as a **mobile-first application**.
 
-* **Feature Phone Integration (USSD/SMS): Building a USSD gateway so women without smartphones can receive localized health tips and trigger emergency alerts via basic SMS.
+To preview it correctly in your browser:
 
-## License
-This project is licensed under the MIT License.
+1. Open the application.
+2. Right-click anywhere on the page and select **Inspect**.
+3. Click the **Device Toolbar** (📱) icon.
+4. Select a mobile device such as **iPhone 12 Pro** or **Pixel 7**.
 
-You are free to use, modify, and distribute this software for educational and development purposes. We strongly encourage other developers to take this concept and adapt it to help vulnerable populations in their own regions.
-````
+---
+
+# Future Roadmap
+
+While this MVP successfully validates SheGuard AI's voice-first interface and multilingual routing, our long-term vision includes:
+
+### Native Mobile Application (React Native)
+
+- Migrate to **Expo + React Native**
+- Offline-first experience
+- Push notifications
+- Native device integrations
+
+### Real-Time AI Voice Streaming
+
+- Integrate **LiveKit WebRTC**
+- Support **Google Gemini 2.5 Native Audio**
+- Enable interruptible, low-latency voice conversations
+
+### Cloud Backend
+
+- Secure authentication
+- Encrypted health journal synchronization
+- User profiles and cloud data storage
+
+### Feature Phone Support
+
+- USSD integration
+- SMS-based emergency alerts
+- Localized health information for users without smartphones
+
+---
+
+**SheGuard AI is built with accessibility, multilingual support, and women's safety at its core—bringing AI-powered assistance to everyone, regardless of literacy level, internet quality, or device capability.**
