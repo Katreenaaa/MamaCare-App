@@ -15,7 +15,7 @@ export default function LanguagePage({ language, setLanguage, onContinue }) {
           Choose Your Language
         </h2>
         <p className="text-[14px] text-white/90 leading-snug pr-4">
-          Select how you'd like to communicate with MamaCare
+          Select how you'd like to communicate with SheGuard
         </p>
       </div>
 

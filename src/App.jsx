@@ -16,10 +16,11 @@ import ChatPage from "./pages/ChatPage";
 import ClinicPage from "./pages/ClinicPage";
 import ReminderPage from "./pages/ReminderPage";
 import SettingsPage from "./pages/SettingsPage";
+import PregnancyGuide from "./pages/PregnancyGuide";
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState("welcome");
-  const [user, setUser] = usePersistentState("mamaCare_user", {
+  const [user, setUser] = usePersistentState("SheGuard_user", {
     name: "",
     week: 22,
     lang: "en",
@@ -94,6 +95,15 @@ export default function App() {
           {/* === MAIN APP FLOW === */}
           {activeScreen === "dashboard" && (
             <Dashboard user={user} t={t} navTo={setActiveScreen} />
+          )}
+
+          {/* NEW: Pregnancy Guide Screen */}
+          {activeScreen === "guide" && (
+            <PregnancyGuide
+              user={user}
+              language={language}
+              onBack={() => setActiveScreen("dashboard")}
+            />
           )}
 
           {activeScreen === "chat" && (

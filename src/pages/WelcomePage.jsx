@@ -8,7 +8,7 @@ export default function WelcomePage({ onContinue }) {
 
     // Create the audio
     const textToRead =
-      "Welcome to MamaCare. Maternal care you can hear, speak, and understand, in your own language.";
+      "Welcome to SheGuard. Maternal care you can hear, speak, and understand, in your own language.";
     const utterance = new SpeechSynthesisUtterance(textToRead);
 
     // Play it
@@ -30,12 +30,12 @@ export default function WelcomePage({ onContinue }) {
         <div className="flex items-center justify-center w-70 h-70 overflow-hidden">
           <img
             src="/mama-care.png"
-            alt="MamaCare Logo"
+            alt="SheGuard Logo"
             className="w-full h-full object-contain drop-shadow-md"
           />
         </div>
         <h1 className="-mt-12 text-4xl font-extrabold text-white mb-3 tracking-tight">
-          MamaCare
+          SheGuard
         </h1>
         <p className="text-white/90 text-center max-w-65 text-sm leading-relaxed">
           Maternal care you can hear, speak, and understand, in your own

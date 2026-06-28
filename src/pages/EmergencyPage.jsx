@@ -1,87 +1,154 @@
-import { ArrowLeft, Ambulance, Building2, Users } from "lucide-react";
+import {
+  ArrowLeft,
+  Ambulance,
+  Users,
+  Activity,
+  AlertOctagon,
+} from "lucide-react";
 
 export default function EmergencyPage({ t, user, onBack }) {
+  // Pull dynamic numbers from the user profile if they exist
+  const doctorNumber = user?.doctorPhone;
+  const emergencyNumber = user?.emergencyContacts?.[0]; // Get the first saved emergency contact
+
+  // Fallback danger signs if translations aren't loaded yet
+  const dangerSignsList = t?.dangerSigns || [
+    "Severe or Persistent Headache",
+    "Vaginal Bleeding (any amount)",
+    "Reduced or No Baby Movement",
+    "Severe Abdominal Pain",
+    "Blurred Vision or Seeing Spots",
+    "Sudden Swelling of Face or Hands",
+  ];
+
   return (
-    <div className="h-full bg-red-50 flex flex-col overflow-hidden">
-      <div className="shrink-0 bg-[#DC2626] pt-14 pb-8 px-6 text-white flex items-center gap-3 z-10 shadow-sm">
-        <button
-          onClick={onBack}
-          className="p-1 hover:bg-white/20 rounded-full transition-colors mr-1 cursor-pointer"
-        >
-          <ArrowLeft size={24} strokeWidth={2.5} />
-        </button>
-        <div>
-          <h2 className="text-[26px] font-extrabold tracking-tight leading-tight">
+    <div className="h-full min-h-full flex-1 bg-[#FFF6F5] flex flex-col relative overflow-hidden">
+      {/* 1. PREMIUM HEADER (Soft Rose Theme) */}
+      <div className="shrink-0 pt-14 pb-4 px-6 flex items-center justify-between z-10 bg-[#FFF6F5]">
+        <div className="flex items-center gap-2.5">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="p-1 -ml-1 hover:bg-red-50 rounded-full transition-colors cursor-pointer text-red-600"
+            >
+              <ArrowLeft size={24} strokeWidth={2.5} />
+            </button>
+          )}
+          <h2 className="text-[24px] font-extrabold tracking-tight text-red-600 leading-tight">
             {t?.emergencyHeading || "Emergency Help"}
           </h2>
-          <p className="text-[13px] text-white/90 mt-0.5 font-medium">
-            {t?.emergencySub || "Get medical help immediately"}
-          </p>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 pt-10 pb-28 flex flex-col gap-4 scrollbar-none">
-        <div className="flex justify-center mb-8 shrink-0">
-          <div className="w-28 h-28 bg-red-100 rounded-full flex items-center justify-center relative shadow-lg">
-            <div className="absolute inset-0 bg-red-400 rounded-full animate-ping opacity-40"></div>
-
-            <span className="text-5xl relative z-10">🚨</span>
+      <div className="flex-1 overflow-y-auto px-6 pb-28 flex flex-col scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        {/* Pulsating Alert Icon */}
+        <div className="flex justify-center mt-2 mb-8 shrink-0">
+          <div className="w-25 h-25 bg-red-100/50 rounded-full flex items-center justify-center relative shadow-[0_4px_20px_rgba(220,38,38,0.15)]">
+            <div className="absolute inset-0 bg-red-300 rounded-full animate-ping opacity-30"></div>
+            <span className="text-[44px] relative z-10">🚨</span>
           </div>
         </div>
 
-        {/* 112 National Emergency */}
-        <a
-          href="tel:112"
-          className="bg-white p-5 rounded-[20px] shadow-[0_4px_12px_rgba(220,38,38,0.05)] border-2 border-red-100 flex items-center gap-4 active:scale-95 transition-transform shrink-0 cursor-pointer"
-        >
-          <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center shrink-0">
-            <Ambulance size={24} strokeWidth={2.5} />
-          </div>
-          <div className="flex-1">
-            <div className="font-extrabold text-[16px] text-gray-900 leading-tight">
-              {t?.callAmbulance || "Call Ambulance (112)"}
+        {/* 2. EMERGENCY ACTION BUTTONS */}
+        <div className="flex flex-col gap-3 shrink-0">
+          {/* Ambulance (112) */}
+          <a
+            href="tel:112"
+            className="bg-white p-5 rounded-3xl shadow-[0_4px_15px_rgba(220,38,38,0.06)] border-[1.5px] border-red-100 flex items-center gap-4 hover:border-red-200 active:scale-95 transition-all cursor-pointer"
+          >
+            <div className="w-12 h-12 bg-[#FFF6F5] text-red-600 rounded-full flex items-center justify-center shrink-0">
+              <Ambulance size={24} strokeWidth={2.5} />
             </div>
-            <div className="text-[13px] text-gray-500 mt-0.5">
-              National toll-free emergency
+            <div className="flex-1">
+              <div className="font-extrabold text-[16px] text-gray-900 leading-tight mb-0.5">
+                {t?.callAmbulance || "Call Ambulance (112)"}
+              </div>
+              <div className="text-[13px] text-gray-500 font-medium">
+                National toll-free emergency
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        {/* Call PHC/Clinic */}
-        <a
-          href="tel:08000000000" // Mock clinic number
-          className="bg-white p-5 rounded-[20px] shadow-[0_4px_12px_rgba(27,94,75,0.05)] border-2 border-[#E8F5F0] flex items-center gap-4 active:scale-95 transition-transform shrink-0 cursor-pointer"
-        >
-          <div className="w-12 h-12 bg-[#E8F5F0] text-[#1B5E4B] rounded-full flex items-center justify-center shrink-0">
-            <Building2 size={24} strokeWidth={2.5} />
-          </div>
-          <div className="flex-1">
-            <div className="font-extrabold text-[16px] text-gray-900 leading-tight">
-              {t?.callClinic || "Call Your Clinic"}
+          {/* Call My Doctor */}
+          <a
+            href={doctorNumber ? `tel:${doctorNumber}` : "#"}
+            onClick={(e) => {
+              if (!doctorNumber) {
+                e.preventDefault();
+                alert(
+                  "Please add a doctor's number in your Settings profile first.",
+                );
+              }
+            }}
+            className="bg-white p-5 rounded-3xl shadow-[0_4px_15px_rgba(220,38,38,0.04)] border-[1.5px] border-red-50 flex items-center gap-4 hover:border-red-100 active:scale-95 transition-all cursor-pointer"
+          >
+            <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center shrink-0">
+              <Activity size={24} strokeWidth={2.5} />
             </div>
-            <div className="text-[13px] text-[#1B5E4B] font-bold mt-0.5">
-              {user?.phc || "PHC Surulere"}
+            <div className="flex-1">
+              <div className="font-extrabold text-[16px] text-gray-900 leading-tight mb-0.5">
+                {t?.callDoctor || "Call My Doctor"}
+              </div>
+              <div
+                className={`text-[13px] font-bold ${doctorNumber ? "text-red-500" : "text-gray-400 font-medium"}`}
+              >
+                {doctorNumber || "No doctor saved"}
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
 
-        {/* Call Emergency Contact */}
-        <a
-          href="tel:08000000000" // Mock partner number
-          className="bg-white p-5 rounded-[20px] shadow-sm border-2 border-gray-100 flex items-center gap-4 active:scale-95 transition-transform shrink-0 cursor-pointer"
-        >
-          <div className="w-12 h-12 bg-gray-100 text-gray-600 rounded-full flex items-center justify-center shrink-0">
-            <Users size={24} strokeWidth={2.5} />
-          </div>
-          <div className="flex-1">
-            <div className="font-extrabold text-[16px] text-gray-900 leading-tight">
-              {t?.callPartner || "Call Partner"}
+          {/* Call Emergency Contact */}
+          <a
+            href={emergencyNumber ? `tel:${emergencyNumber}` : "#"}
+            onClick={(e) => {
+              if (!emergencyNumber) {
+                e.preventDefault();
+                alert(
+                  "Please add an emergency contact in your Settings profile first.",
+                );
+              }
+            }}
+            className="bg-white p-5 rounded-3xl shadow-[0_4px_15px_rgba(220,38,38,0.04)] border-[1.5px] border-red-50 flex items-center gap-4 hover:border-red-100 active:scale-95 transition-all cursor-pointer"
+          >
+            <div className="w-12 h-12 bg-red-50 text-red-500 rounded-full flex items-center justify-center shrink-0">
+              <Users size={24} strokeWidth={2.5} />
             </div>
-            <div className="text-[13px] text-gray-500 mt-0.5">
-              Saved emergency contact
+            <div className="flex-1">
+              <div className="font-extrabold text-[16px] text-gray-900 leading-tight mb-0.5">
+                {t?.callContact || "Call Emergency Contact"}
+              </div>
+              <div
+                className={`text-[13px] font-bold ${emergencyNumber ? "text-red-500" : "text-gray-400 font-medium"}`}
+              >
+                {emergencyNumber || "No contact saved"}
+              </div>
             </div>
+          </a>
+        </div>
+
+        {/* 3. DANGER SIGNS LIST */}
+        <div className="mt-8 mb-4 shrink-0">
+          <h3 className="text-[12px] font-extrabold text-red-500 uppercase tracking-wider mb-3 pl-1">
+            {t?.dangerSignsHeading || "Danger Signs — Seek Help Now"}
+          </h3>
+
+          <div className="bg-white rounded-3xl border-[1.5px] border-red-100 p-5 shadow-[0_4px_15px_rgba(220,38,38,0.04)]">
+            <ul className="space-y-4">
+              {dangerSignsList.map((sign, index) => (
+                <li key={index} className="flex gap-3 items-start">
+                  <AlertOctagon
+                    className="text-red-400 shrink-0 mt-0.5"
+                    size={18}
+                    strokeWidth={2.5}
+                  />
+                  <span className="text-[14px] text-gray-800 font-bold leading-tight pt-0.5">
+                    {sign}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   );

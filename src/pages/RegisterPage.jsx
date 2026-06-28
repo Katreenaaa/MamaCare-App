@@ -9,6 +9,7 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
     state: "",
     lga: "",
     phc: "",
+    doctorPhone: "", // NEW FIELD
   });
 
   const [recordingField, setRecordingField] = useState(null);
@@ -31,7 +32,7 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
     window.speechSynthesis.cancel();
     const textToRead =
       t?.registerAudio ||
-      "Please enter your details like your name, weeks pregnant, and location so we can personalize your journey.";
+      "Please enter your details like your name, weeks pregnant, location, and your primary doctor's phone number so we can personalize your journey.";
     const utterance = new SpeechSynthesisUtterance(textToRead);
     utterance.lang = voiceLangMap[language] || "en-NG";
     window.speechSynthesis.speak(utterance);
@@ -99,13 +100,33 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
     e.preventDefault();
     setErrorMessage("");
 
-    // 1. Hard Validation: Check if core details are missing
+    let submissionData = { ...formData };
+
+    // 1. Phone Number Validation (Strips spaces from voice inputs and validates format)
+    if (submissionData.doctorPhone) {
+      const phoneClean = submissionData.doctorPhone.replace(/\s+/g, ""); // Removes accidental spaces
+      // Regex matches either 11 digits starting with 0, OR +234 followed by 10 digits
+      const phoneRegex = /^(0\d{10}|\+234\d{10})$/;
+
+      if (!phoneRegex.test(phoneClean)) {
+        setErrorMessage(
+          "Please enter a complete 11-digit phone number (e.g. 08012345678) or use the +234 format.",
+        );
+        return;
+      }
+
+      // Update the formData with the cleaned number so it saves properly
+      submissionData = { ...submissionData, doctorPhone: phoneClean };
+      setFormData(submissionData);
+    }
+
+    // 2. Hard Validation: Check if core details are missing
     if (
-      !formData.name ||
-      !formData.lmp ||
-      !formData.week ||
-      !formData.state ||
-      !formData.lga
+      !submissionData.name ||
+      !submissionData.lmp ||
+      !submissionData.week ||
+      !submissionData.state ||
+      !submissionData.lga
     ) {
       setErrorMessage(
         "Please fill in all your details so we can personalize your journey.",
@@ -113,13 +134,13 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
       return;
     }
 
-    // 2. Soft Validation: Check if PHC is missing
+    // 3. Soft Validation: Check if PHC is missing
     if (!formData.phc && !phcWarning) {
       setPhcWarning(true);
       return;
     }
 
-    // 3. Complete Registration
+    // 4. Complete Registration
     onComplete({ ...formData, week: parseInt(formData.week) || 0 });
   };
 
@@ -336,6 +357,45 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
                 onClick={() => handleVoiceInput("phc")}
                 className={`absolute right-4 p-1 rounded-full transition-colors ${
                   recordingField === "phc"
+                    ? "text-red-500 animate-pulse"
+                    : "text-gray-400 hover:text-[#1B5E4B]"
+                }`}
+              >
+                <Mic size={20} strokeWidth={2.5} />
+              </button>
+            </div>
+          </div>
+
+          {/* Doctor's Phone Number */}
+          <div>
+            <label className="block text-[11px] font-extrabold text-[#1B5E4B] mb-1.5 uppercase tracking-wide">
+              Doctor's Phone Number{" "}
+              <span className="text-gray-400 normal-case font-normal">
+                (Optional)
+              </span>
+            </label>
+            <div className="relative flex items-center">
+              <input
+                type="tel"
+                name="doctorPhone"
+                value={formData.doctorPhone}
+                onChange={handleChange}
+                placeholder={
+                  recordingField === "doctorPhone"
+                    ? "Listening..."
+                    : "e.g. 08012345678"
+                }
+                className={`w-full bg-white border-[1.5px] border-gray-200 rounded-xl pl-4 pr-12 py-3.5 text-[14px] text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#1B5E4B] transition-colors ${
+                  recordingField === "doctorPhone"
+                    ? "text-[#1B5E4B] font-semibold bg-[#E8F5F0] border-[#1B5E4B]"
+                    : ""
+                }`}
+              />
+              <button
+                type="button"
+                onClick={() => handleVoiceInput("doctorPhone")}
+                className={`absolute right-4 p-1 rounded-full transition-colors ${
+                  recordingField === "doctorPhone"
                     ? "text-red-500 animate-pulse"
                     : "text-gray-400 hover:text-[#1B5E4B]"
                 }`}

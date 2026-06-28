@@ -126,7 +126,7 @@ export default function ChatPage({ user, t, onBack }) {
         <div className="flex flex-col justify-center">
           {/* THE FIX: Font size increased to 24px to match other pages */}
           <h3 className="font-extrabold text-[24px] leading-tight tracking-tight">
-            MamaCare AI
+            SheGuard AI
           </h3>
           <p className="text-[13px] text-white/80 mt-0.5 font-medium">
             Responding in {displayLang}

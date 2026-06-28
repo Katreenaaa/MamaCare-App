@@ -1,3 +1,6 @@
+// ==========================================
+// TRANSLATION DICTIONARY
+// ==========================================
 export const TRANSLATIONS = {
   en: {
     // General & Nav
@@ -12,7 +15,7 @@ export const TRANSLATIONS = {
     // Registration & Auth
     createAccount: "Create Profile",
     registerAudio:
-      "Please enter your details like your name, weeks pregnant, and location so we can personalize your journey.",
+      "Please enter your details like your name, weeks pregnant, location, and your primary doctor's phone number so we can personalize your journey.",
     fullName: "Full Name",
     namePlaceholder: "e.g. Amina Balogun",
     weeksPregnant: "How far along are you? (Weeks)",
@@ -34,17 +37,41 @@ export const TRANSLATIONS = {
 
     // Dashboard
     dashboardTipsHeading: "Daily Health Tips",
-    tips: [
-      "Drink at least 8 glasses of water today.",
-      "Take your prenatal vitamins after a meal.",
-      "Rest with your feet elevated to reduce swelling.",
+    richTips: [
+      {
+        source: "WHO",
+        title: "Stay Hydrated",
+        desc: "Drink at least 8 glasses of water today. Hydration is critical for amniotic fluid levels.",
+        emoji: "💧",
+      },
+      {
+        source: "UNICEF",
+        title: "Prenatal Vitamins",
+        desc: "Take your prenatal vitamins after a meal. Folic acid helps prevent major birth defects.",
+        emoji: "💊",
+      },
+      {
+        source: "FMOH",
+        title: "Elevate Your Feet",
+        desc: "Rest with your feet elevated to reduce swelling and improve blood circulation.",
+        emoji: "🦵",
+      },
+      {
+        source: "WHO",
+        title: "Nutritious Diet",
+        desc: "Eat dark leafy greens like Ugu or Spinach to keep your iron levels healthy.",
+        emoji: "🥬",
+      },
     ],
+
     upcomingAppt: "Upcoming Appointments",
     quickActions: "Quick Actions",
     logSymptom: "Log Symptom",
 
     // Settings
     settingsHeading: "Settings",
+    settingsAudio:
+      "Profile Settings. Here you can change your preferred language, manage your emergency contacts, and update your doctor's phone number.",
     preferences: "Preferences",
     language: "Language",
     notifications: "Notifications",
@@ -64,6 +91,17 @@ export const TRANSLATIONS = {
     callAmbulance: "Call Ambulance (112)",
     callClinic: "Call Your Clinic",
     callPartner: "Call Partner",
+    callDoctor: "Call My Doctor",
+    callContact: "Call Emergency Contact",
+    dangerSignsHeading: "Danger Signs — Seek Help Now",
+    dangerSigns: [
+      "Severe or Persistent Headache",
+      "Vaginal Bleeding (any amount)",
+      "Reduced or No Baby Movement",
+      "Severe Abdominal Pain",
+      "Blurred Vision or Seeing Spots",
+      "Sudden Swelling of Face or Hands",
+    ],
   },
   yo: {
     // General & Nav
@@ -78,7 +116,7 @@ export const TRANSLATIONS = {
     // Registration & Auth
     createAccount: "Ṣẹ̀dá Àkọọ́lẹ̀",
     registerAudio:
-      "Jọ̀wọ́ tẹ àwọn kúlẹ̀kúlẹ̀ rẹ bíi orúkọ, ọ̀sẹ̀ oyún rẹ, àti ibi tí o wà kí a lè ṣe ètò ìtọ́jú rẹ.",
+      "Jọ̀wọ́ tẹ àwọn kúlẹ̀kúlẹ̀ rẹ bíi orúkọ, ọ̀sẹ̀ oyún rẹ, ibi tí o wà, àti nọ́mbà dọ́kítà rẹ.",
     fullName: "Orúkọ Kíkún",
     namePlaceholder: "Bí àpẹẹrẹ. Amina Balogun",
     weeksPregnant: "Ọ̀sẹ̀ mélòó ni oyún rẹ?",
@@ -100,17 +138,37 @@ export const TRANSLATIONS = {
 
     // Dashboard
     dashboardTipsHeading: "Ìmọ̀ràn Ìlera Òjoojúmọ́",
-    tips: [
-      "Mu omi tó pọ̀ dáadáa lónìí (bíi ife mẹ́jọ).",
-      "Lo oògùn rẹ lẹ́hìn tí o bá jẹun tán.",
-      "Gbé ẹsẹ̀ rẹ sókè nígbàtí o bá ń sinmi láti dín wíwú kù.",
+    richTips: [
+      {
+        source: "WHO",
+        title: "Mu Omi Dáadáa",
+        desc: "Mu omi tó pọ̀ dáadáa lónìí (bíi ife mẹ́jọ). Omi ṣe pàtàkì fún omi inú oyún.",
+        emoji: "💧",
+      },
+      {
+        source: "UNICEF",
+        title: "Lo Oògùn Rẹ",
+        desc: "Lo oògùn folic acid rẹ lẹ́hìn tí o bá jẹun tán láti dáàbò bo ọpọlọ ọmọ rẹ.",
+        emoji: "💊",
+      },
+      {
+        source: "FMOH",
+        title: "Gbé Ẹsẹ̀ Sókè",
+        desc: "Gbé ẹsẹ̀ rẹ sókè nígbàtí o bá ń sinmi láti dín wíwú kù.",
+        emoji: "🦵",
+      },
+      {
+        source: "WHO",
+        title: "Jẹ Ẹ̀fọ́",
+        desc: "Jẹ ẹ̀fọ́ tó léra bíi Ugu láti ṣètọ́jú ẹ̀jẹ̀ rẹ.",
+        emoji: "🥬",
+      },
     ],
-    upcomingAppt: "Ìpàdé Ìlera Rẹ",
-    quickActions: "Àwọn Ìgbésẹ̀ Kíákíá",
-    logSymptom: "Ṣàkọsílẹ̀ Bóo Ṣe Ń Ní Ìmọ̀lára",
 
     // Settings
     settingsHeading: "Ètò",
+    settingsAudio:
+      "Ètò Ìrísí. Níbí, o lè yí èdè rẹ padà, ṣètò àwọn nọ́mbà pàjáwìrì rẹ, àti ṣe àtúnṣe nọ́mbà fóònù dọ́kítà rẹ.",
     preferences: "Ohun tí o fẹ́",
     language: "Èdè",
     notifications: "Ìfitọ́nilétí",
@@ -121,8 +179,7 @@ export const TRANSLATIONS = {
 
     // Reminders
     remindersHeading: "Àwọn Ìrántí Rẹ",
-    remindersSub: "Máṣe gbàgbé oògùn tàbí ìpàdé rẹ",
-    addReminder: "Ṣàfikún Ìrántí Tuntun",
+    addReminder: "Ṣàfikún Ìrántí",
 
     // Emergency
     emergencyHeading: "Ìrànlọ́wọ́ Pàjáwìrì",
@@ -130,6 +187,17 @@ export const TRANSLATIONS = {
     callAmbulance: "Pe Ọkọ̀ Ìwòsàn (112)",
     callClinic: "Pe Ilé-ìwòsàn Rẹ",
     callPartner: "Pe Ọkọ Rẹ",
+    callDoctor: "Pe Dọ́kítà Mi",
+    callContact: "Pe Ẹni Pàjáwìrì",
+    dangerSignsHeading: "Àwọn Àmì Ewu — Wá Ìrànlọ́wọ́ Nísinsìnyí",
+    dangerSigns: [
+      "Ẹfọ́rí tó le koko",
+      "Ẹ̀jẹ̀ ríru ní ojú ara",
+      "Ọmọ inú kò ta mọ́",
+      "Inú rírun tó le",
+      "Ìran tí kò ṣe kedere",
+      "Wíwú ojú tàbí ọwọ́ lójijì",
+    ],
   },
   ha: {
     // General & Nav
@@ -144,7 +212,7 @@ export const TRANSLATIONS = {
     // Registration & Auth
     createAccount: "Ƙirƙiri Asusu",
     registerAudio:
-      "Don Allah shigar da bayananku kamar suna, makonnin ciki, da inda kuke don mu tsara tafiyar ku.",
+      "Don Allah shigar da bayananku kamar suna, makonnin ciki, da lambar wayar likitanki.",
     fullName: "Cikakken Suna",
     namePlaceholder: "Misali. Amina Balogun",
     weeksPregnant: "Cikin ki ya kai makonni nawa?",
@@ -166,17 +234,37 @@ export const TRANSLATIONS = {
 
     // Dashboard
     dashboardTipsHeading: "Shawarwarin Lafiya na Yau",
-    tips: [
-      "Sha ruwa kofuna 8 a yau don guje wa ƙishirwa.",
-      "Sha maganin ki bayan kin ci abinci.",
-      "Huta da ƙafar ki a sama don rage kumburi.",
+    richTips: [
+      {
+        source: "WHO",
+        title: "Sha Ruwa Sosai",
+        desc: "Sha ruwa kofuna 8 a yau don guje wa ƙishirwa da kuma lafiyar jinjiri.",
+        emoji: "💧",
+      },
+      {
+        source: "UNICEF",
+        title: "Maganin Ki",
+        desc: "Sha maganin folic acid bayan kin ci abinci don lafiyar kwakwalwar jariri.",
+        emoji: "💊",
+      },
+      {
+        source: "FMOH",
+        title: "Huta da Kafa",
+        desc: "Huta da ƙafar ki a sama don rage kumburi.",
+        emoji: "🦵",
+      },
+      {
+        source: "WHO",
+        title: "Abinci Mai Kyau",
+        desc: "Ci ganye masu duhu kamar alayyahu don kara jini.",
+        emoji: "🥬",
+      },
     ],
-    upcomingAppt: "Ganin Likita",
-    quickActions: "Ayyuka Masu Sauri",
-    logSymptom: "Rubuta Alamar Ciwo",
 
     // Settings
     settingsHeading: "Tsari",
+    settingsAudio:
+      "Tsarin Bayanai. A nan za ki iya canza yarenki, gyara lambobin gaggawa, da kuma sabunta lambar wayar likitanki.",
     preferences: "Zabi",
     language: "Yare",
     notifications: "Sanarwa",
@@ -187,7 +275,6 @@ export const TRANSLATIONS = {
 
     // Reminders
     remindersHeading: "Tunasarwarki",
-    remindersSub: "Kada ki manta da magani ko asibiti",
     addReminder: "Ƙara Sabon Tunasarwa",
 
     // Emergency
@@ -196,6 +283,17 @@ export const TRANSLATIONS = {
     callAmbulance: "Kira Motar Asibiti (112)",
     callClinic: "Kira Asibitin Ki",
     callPartner: "Kira Mijinki",
+    callDoctor: "Kira Likitana",
+    callContact: "Kira Lambar Gaggawa",
+    dangerSignsHeading: "Alamomin Haɗari — Nemi Taimako Yanzu",
+    dangerSigns: [
+      "Ciwon Kai Mai Tsanani",
+      "Zubar Jini ta Gaba",
+      "Rashin Motsin Jariri",
+      "Ciwon Ciki Mai Tsanani",
+      "Gani Disi-Disi",
+      "Kumburin Fuska Ko Hannu",
+    ],
   },
   ig: {
     // General & Nav
@@ -210,7 +308,7 @@ export const TRANSLATIONS = {
     // Registration & Auth
     createAccount: "Mepụta Profaịlụ",
     registerAudio:
-      "Biko tinye nkọwa gị dị ka aha gị, izu ole ime gị dị, yana ebe ị nọ ka anyị nwee ike hazie nlekọta gị.",
+      "Biko tinye nkọwa gị dị ka aha gị, izu ole ime gị dị, yana nọmba dọkịta gị.",
     fullName: "Aha Gị Nile",
     namePlaceholder: "Dịka ọmụmaatụ. Amina Balogun",
     weeksPregnant: "Ime gị dị izu ole?",
@@ -232,17 +330,37 @@ export const TRANSLATIONS = {
 
     // Dashboard
     dashboardTipsHeading: "Ndụmọdụ Ahụike Taa",
-    tips: [
-      "Ṅụọ iko mmiri asatọ taa.",
-      "Ṅụọ ọgwụ gị ma ị richaa nri.",
-      "Buli ụkwụ gị elu mgbe ị na-ezu ike ka ọ hapụ ịza.",
+    richTips: [
+      {
+        source: "WHO",
+        title: "Ṅụọ Mmiri Oge Niile",
+        desc: "Ṅụọ iko mmiri asatọ taa maka ahụike nwa gị.",
+        emoji: "💧",
+      },
+      {
+        source: "UNICEF",
+        title: "Ṅụọ Ọgwụ Gị",
+        desc: "Ṅụọ ọgwụ folic acid gị ma ị richaa nri maka nwa gị.",
+        emoji: "💊",
+      },
+      {
+        source: "FMOH",
+        title: "Zuru Ike Ọfụma",
+        desc: "Buli ụkwụ gị elu mgbe ị na-ezu ike ka ọ hapụ ịza.",
+        emoji: "🦵",
+      },
+      {
+        source: "WHO",
+        title: "Nri Bara Uru",
+        desc: "Rie akwụkwọ nri dị ka Ugu iji nyere ọbara gị aka.",
+        emoji: "🥬",
+      },
     ],
-    upcomingAppt: "Oge Ịhụ Dọkịta",
-    quickActions: "Ihe Ngwa Ngwa",
-    logSymptom: "Dèe Ihe Ị Na-enwe",
 
     // Settings
     settingsHeading: "Ntọala",
+    settingsAudio:
+      "Ntọala Profaịlụ. Ebe a ị nwere ike ịgbanwe asụsụ gị, jikwaa nọmba ihe mberede gị, na melite nọmba dọkịta gị.",
     preferences: "Ihe Ịhọrọ",
     language: "Asụsụ",
     notifications: "Ọkwa",
@@ -253,7 +371,6 @@ export const TRANSLATIONS = {
 
     // Reminders
     remindersHeading: "Ihe Ncheta Gị",
-    remindersSub: "Echezọla ọgwụ gị ma ọ bụ ịhụ dọkịta",
     addReminder: "Tinye Ihe Ncheta Ọhụrụ",
 
     // Emergency
@@ -262,6 +379,17 @@ export const TRANSLATIONS = {
     callAmbulance: "Kpọọ Ụgbọ Ihe Mberede (112)",
     callClinic: "Kpọọ Ụlọ Ọgwụ Gị",
     callPartner: "Kpọọ Di Gị",
+    callDoctor: "Kpọọ Dọkịta M",
+    callContact: "Kpọọ Onye Enyemaka Mberede",
+    dangerSignsHeading: "Ihe Ịrịba Ama Egwu — Chọọ Enyemaka",
+    dangerSigns: [
+      "Isi Ọwụwa Sịrị Ike",
+      "Ọbara Ọgbụgba",
+      "Nwa Anaghị Akwagharị",
+      "Afọ Ọwụwa Sịrị Ike",
+      "Anya Ịhụ Ụzọ Nke Ọma",
+      "Ọzịza Ihu Ma Ọ Bụ Aka",
+    ],
   },
   pc: {
     // General & Nav
@@ -276,7 +404,7 @@ export const TRANSLATIONS = {
     // Registration & Auth
     createAccount: "Create Profile",
     registerAudio:
-      "Abeg put your details like your name, how many weeks your belle be, and where you dey make we fit plan your journey well.",
+      "Abeg put your details like your name, how many weeks your belle be, and your doctor number.",
     fullName: "Your Full Name",
     namePlaceholder: "E.g. Amina Balogun",
     weeksPregnant: "How many weeks your belle be?",
@@ -298,17 +426,37 @@ export const TRANSLATIONS = {
 
     // Dashboard
     dashboardTipsHeading: "Health Tips For Today",
-    tips: [
-      "Make sure say you drink like 8 cup of water today.",
-      "Chop before you take your drugs.",
-      "Rest well and raise your leg up make e no swell.",
+    richTips: [
+      {
+        source: "WHO",
+        title: "Drink Water Well",
+        desc: "Make sure say you drink like 8 cup of water today. E good for the baby water.",
+        emoji: "💧",
+      },
+      {
+        source: "UNICEF",
+        title: "Take Your Drugs",
+        desc: "Chop before you take your folic acid make the baby brain form well.",
+        emoji: "💊",
+      },
+      {
+        source: "FMOH",
+        title: "Raise Leg Up",
+        desc: "Rest well and raise your leg up make e no swell.",
+        emoji: "🦵",
+      },
+      {
+        source: "WHO",
+        title: "Chop Better Food",
+        desc: "Chop green leaves like Ugu make you get enough blood.",
+        emoji: "🥬",
+      },
     ],
-    upcomingAppt: "Next Appointment",
-    quickActions: "Sharp Sharp Actions",
-    logSymptom: "Log How You Dey Feel",
 
     // Settings
     settingsHeading: "Settings",
+    settingsAudio:
+      "Profile Settings. For here you fit change your language, arrange your emergency numbers, and update your doctor phone number.",
     preferences: "How You Want Am",
     language: "Language",
     notifications: "Alerts",
@@ -319,7 +467,6 @@ export const TRANSLATIONS = {
 
     // Reminders
     remindersHeading: "Your Reminders",
-    remindersSub: "Make you no forget your drugs or hospital day",
     addReminder: "Add New Reminder",
 
     // Emergency
@@ -328,17 +475,206 @@ export const TRANSLATIONS = {
     callAmbulance: "Call Ambulance (112)",
     callClinic: "Call Your Hospital",
     callPartner: "Call Your Partner",
+    callDoctor: "Call My Doctor",
+    callContact: "Call My Emergency Person",
+    dangerSignsHeading: "Danger Signs — Find Help Sharp Sharp",
+    dangerSigns: [
+      "Serious Headache wey no dey stop",
+      "Blood dey commot for down",
+      "Baby no dey move again",
+      "Serious Belle Pain",
+      "Eye dey turn you",
+      "Face or hand just swell up",
+    ],
   },
 };
 
-// 1. STATE & LGA DATABASE (Hackathon Demo Data)
+// ==========================================
+// PREGNANCY GUIDE DATABASE (Multilingual)
+// ==========================================
+export const PREGNANCY_GUIDE_DATA = {
+  en: [
+    {
+      month: 1,
+      weeks: "Weeks 1–4",
+      title: "Your body begins to change",
+      tips: [
+        {
+          id: "m1-1",
+          emoji: "💊",
+          title: "Start Folic Acid",
+          desc: "Take daily to help your baby's brain and spine develop.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+        {
+          id: "m1-2",
+          emoji: "🥩",
+          title: "Avoid Raw Food",
+          desc: "Stay away from undercooked meat and unpasteurized milk.",
+          bgColor: "bg-[#FFF6E5]",
+        },
+      ],
+    },
+    {
+      month: 5,
+      weeks: "Weeks 17–20",
+      title: "Baby kicks can be felt",
+      tips: [
+        {
+          id: "m5-1",
+          emoji: "👶",
+          title: "Your Baby is Moving!",
+          desc: "You may start feeling flutters or light kicks in your belly.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+        {
+          id: "m5-2",
+          emoji: "🦵",
+          title: "Leg Cramps & Swelling",
+          desc: "Elevate your feet when resting. Drink plenty of water.",
+          bgColor: "bg-[#F3EEFA]",
+        },
+        {
+          id: "m5-3",
+          emoji: "🩺",
+          title: "Anatomy Scan",
+          desc: "Time for your mid-pregnancy ultrasound at the clinic.",
+          bgColor: "bg-[#E8F5F0]",
+        },
+      ],
+    },
+  ],
+  yo: [
+    {
+      month: 1,
+      weeks: "Ọ̀sẹ̀ 1–4",
+      title: "Ara rẹ bẹ̀rẹ̀ sí yípadà",
+      tips: [
+        {
+          id: "m1-1",
+          emoji: "💊",
+          title: "Bẹ̀rẹ̀ Folic Acid",
+          desc: "Lo oògùn yìí lójoojúmọ́ láti ran ọpọlọ ọmọ lọ́wọ́.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+    {
+      month: 5,
+      weeks: "Ọ̀sẹ̀ 17–20",
+      title: "Ọmọ bẹ̀rẹ̀ sí ń ta",
+      tips: [
+        {
+          id: "m5-1",
+          emoji: "👶",
+          title: "Ọmọ Rẹ Ń Gbé!",
+          desc: "Wàá bẹ̀rẹ̀ sí ní ìmọ̀lára pé ọmọ ń yípadà nínú rẹ.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+  ],
+  ha: [
+    {
+      month: 1,
+      weeks: "Mako 1–4",
+      title: "Canje-canjen jiki ya fara",
+      tips: [
+        {
+          id: "m1-1",
+          emoji: "💊",
+          title: "Fara Shan Folic Acid",
+          desc: "Sha kowace rana don taimakawa kwakwalwar jariri.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+    {
+      month: 5,
+      weeks: "Mako 17–20",
+      title: "Jin motsin jariri",
+      tips: [
+        {
+          id: "m5-1",
+          emoji: "👶",
+          title: "Jaririnki Na Motsi!",
+          desc: "Za ki fara jin motsi a cikin cikinki. Wannan al'ada ce.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+  ],
+  ig: [
+    {
+      month: 1,
+      weeks: "Izu 1–4",
+      title: "Ahụ gị na-agbanwe",
+      tips: [
+        {
+          id: "m1-1",
+          emoji: "💊",
+          title: "Malite Folic Acid",
+          desc: "Ṅụọ ya kwa ụbọchị iji nyere ụbụrụ nwa gị aka.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+    {
+      month: 5,
+      weeks: "Izu 17–20",
+      title: "Nwa gị na-amalite ịkwagharị",
+      tips: [
+        {
+          id: "m5-1",
+          emoji: "👶",
+          title: "Nwa gị na-akwagharị!",
+          desc: "Ị ga-amalite inwe mmetụta na nwa gị na-agba ụkwụ.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+  ],
+  pc: [
+    {
+      month: 1,
+      weeks: "Week 1–4",
+      title: "Your body dey change",
+      tips: [
+        {
+          id: "m1-1",
+          emoji: "💊",
+          title: "Start Folic Acid",
+          desc: "Take am everyday make e help your baby brain.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+    {
+      month: 5,
+      weeks: "Week 17–20",
+      title: "Baby don dey kick",
+      tips: [
+        {
+          id: "m5-1",
+          emoji: "👶",
+          title: "Your Baby Dey Move!",
+          desc: "You go start to feel say baby dey kick your belle.",
+          bgColor: "bg-[#EBF4FF]",
+        },
+      ],
+    },
+  ],
+};
+
+// ==========================================
+// LOCATIONS & CLINICS
+// ==========================================
 export const NIGERIA_LOCATIONS = {
   Lagos: ["Ikeja", "Surulere", "Eti-Osa", "Alimosho", "Yaba"],
   FCT: ["Abuja Municipal", "Bwari", "Gwagwalada", "Kuje"],
   Kano: ["Kano Municipal", "Dala", "Gwale", "Tarauni"],
 };
 
-// 2. UPGRADED CLINICS DATABASE
 export const CLINICS = [
   {
     id: 1,
@@ -346,7 +682,7 @@ export const CLINICS = [
     state: "Lagos",
     lga: "Surulere",
     address: "Babs Animashaun Rd, Surulere",
-    coords: [6.4952, 3.3515], // Real GPS coordinates
+    coords: [6.4952, 3.3515],
     dist: "1.2 km away",
     image:
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
@@ -420,12 +756,6 @@ export const REMINDER_DATA = {
       cat: "med",
     },
     { id: 3, title: "Mu ife omi mẹ́jọ", time: "Ní gbogbo ọjọ́", cat: "tip" },
-    {
-      id: 4,
-      title: "Kíláàsì ìfúnmọni",
-      time: "Ọjọ́ Àbámẹ́ta, 11:00 AM",
-      cat: "appt",
-    },
   ],
   ha: [
     {
@@ -441,12 +771,6 @@ export const REMINDER_DATA = {
       cat: "med",
     },
     { id: 3, title: "Sha ruwa kofuna 8", time: "Duk tsawon yini", cat: "tip" },
-    {
-      id: 4,
-      title: "Kwasin koyon shayarwa",
-      time: "Asabar, 11:00 AM",
-      cat: "appt",
-    },
   ],
   ig: [
     { id: 1, title: "Oge ịhụ dọkịta", time: "Echi, 9:00 AM", cat: "appt" },
@@ -457,12 +781,6 @@ export const REMINDER_DATA = {
       cat: "med",
     },
     { id: 3, title: "Ṅụọ iko mmiri asatọ", time: "N'ụbọchị niile", cat: "tip" },
-    {
-      id: 4,
-      title: "Klasị ịnyụ nwa ara",
-      time: "Satọdee, 11:00 AM",
-      cat: "appt",
-    },
   ],
   pc: [
     { id: 1, title: "Hospital visit", time: "Tomorrow, 9:00 AM", cat: "appt" },
@@ -473,39 +791,11 @@ export const REMINDER_DATA = {
       cat: "med",
     },
     { id: 3, title: "Drink 8 glasses of water", time: "All day", cat: "tip" },
-    {
-      id: 4,
-      title: "Breastfeeding class",
-      time: "Saturday, 11:00 AM",
-      cat: "appt",
-    },
   ],
 };
 
 export const AI_RESPONSES = [
-  // General reassurance
   "That's a great question! During pregnancy, it's normal to experience some discomfort. However, if it becomes severe, please visit your healthcare provider immediately.",
-  "Thank you for asking about that. The WHO recommends speaking with your midwife or doctor for personalized advice. General guidance suggests staying well-hydrated and resting when needed.",
-  "It's completely natural to feel anxious about these changes in your body! You are doing a great job. Remember to rest, stay hydrated, and don't hesitate to reach out to your clinic.",
-
-  // Morning Sickness & Nausea
-  "Nausea and vomiting are very common, especially in the first trimester. Try eating small, frequent meals and keeping plain crackers by your bed. If you can't keep any liquids down for 24 hours, please contact your clinic.",
-
-  // Fetal Movement
-  "Feeling your baby move is a wonderful sign! Most mothers start feeling movements between 16 and 24 weeks. If you ever notice a sudden decrease in your baby's normal movement pattern, please go to your Primary Healthcare Center immediately.",
-
-  // Spotting / Bleeding
-  "Light spotting can sometimes happen, but any bleeding during pregnancy should always be checked by a doctor or midwife. Please contact your healthcare provider or visit the clinic as soon as possible just to be safe.",
-
-  // Cramping / Abdominal Pain
-  "Mild cramping can be normal as your uterus expands to make room for your baby. However, if the cramps are severe, accompanied by bleeding, or feel like regular contractions, please seek medical attention right away.",
-
-  // Diet & Nutrition
-  "Eating a balanced diet is very important for you and your baby. Make sure to take your folic acid and iron supplements. Try to eat plenty of vegetables, and avoid raw meats or unpasteurized dairy.",
-
-  // Swelling (Edema) / Blood Pressure warning
-  "Mild swelling in your feet and ankles is normal, especially later in the day. Try resting with your feet elevated! But if you have sudden swelling in your face or hands, or a severe headache, please visit the hospital immediately.",
-
-  // Fatigue
-  "Feeling extra tired is one of the most common pregnancy symptoms because your body is working hard to grow a baby! Listen to your body, take naps when you can, and make sure you are getting enough iron in your diet.",
+  "Nausea and vomiting are very common, especially in the first trimester. Try eating small, frequent meals.",
+  "Feeling your baby move is a wonderful sign! Most mothers start feeling movements between 16 and 24 weeks.",
 ];
