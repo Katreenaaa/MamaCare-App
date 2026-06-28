@@ -23,7 +23,6 @@ export default function EmergencyPage({ t, user, onBack }) {
 
   return (
     <div className="h-full min-h-full flex-1 bg-[#FFF6F5] flex flex-col relative overflow-hidden">
-      {/* 1. PREMIUM HEADER (Soft Rose Theme) */}
       <div className="shrink-0 pt-14 pb-4 px-6 flex items-center justify-between z-10 bg-[#FFF6F5]">
         <div className="flex items-center gap-2.5">
           {onBack && (

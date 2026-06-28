@@ -19,8 +19,6 @@ export default function LanguagePage({ language, setLanguage, onContinue }) {
         </p>
       </div>
 
-      {/* DYNAMIC LIST SPACE */}
-
       <div className="flex-1 overflow-y-auto px-6 py-6 space-y-3.5 scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {LANG_OPTIONS.map((opt) => {
           const isSelected = language === opt.code;

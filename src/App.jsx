@@ -51,13 +51,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-200 flex justify-center font-sans overflow-hidden">
-      {/* 
-        THE DEVICE CONTAINER:
-        TO remember: sm:max-w-[420px] -> Fills 100% width on phones, caps at 420px on laptops!
-       
-      */}
       <div className="w-full sm:max-w-105 flex flex-col bg-[#fdfaf5] relative shadow-2xl overflow-hidden sm:border-x border-gray-300">
-        {/* SCROLLING WRAPPER */}
         <div className="flex-1 flex flex-col overflow-y-auto overflow-x-hidden relative scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {/* === AUTH FLOW === */}
           {activeScreen === "welcome" && (
@@ -97,7 +91,7 @@ export default function App() {
             <Dashboard user={user} t={t} navTo={setActiveScreen} />
           )}
 
-          {/* NEW: Pregnancy Guide Screen */}
+          {/* Pregnancy Guide Screen */}
           {activeScreen === "guide" && (
             <PregnancyGuide
               user={user}

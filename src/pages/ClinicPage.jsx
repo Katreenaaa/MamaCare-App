@@ -83,7 +83,7 @@ export default function ClinicPage({ onBack }) {
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.target.onerror = null;
-                e.target.src = "/mama-care.png";
+                e.target.src = "/sheguard.png";
               }}
             />
           </div>

@@ -29,7 +29,7 @@ export default function WelcomePage({ onContinue }) {
       <div className="flex flex-col items-center justify-center z-10 pb-24 relative">
         <div className="flex items-center justify-center w-70 h-70 overflow-hidden">
           <img
-            src="/mama-care.png"
+            src="/sheguard.png"
             alt="SheGuard Logo"
             className="w-full h-full object-contain drop-shadow-md"
           />

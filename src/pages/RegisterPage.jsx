@@ -27,7 +27,7 @@ export default function RegisterPage({ onComplete, t, language, onBack }) {
     pc: "en-NG",
   };
 
-  // 🔊 Text-To-Speech (Reads instructions to the user)
+  // Text-To-Speech (Reads instructions to the user)
   const handleSpeak = () => {
     window.speechSynthesis.cancel();
     const textToRead =

@@ -80,7 +80,7 @@ export default function SettingsPage({
     window.speechSynthesis.speak(utterance);
   };
 
-  // 🎤 Web Speech API (Speech-to-Text)
+  // Web Speech API (Speech-to-Text)
   const handleVoiceInput = (field, setter) => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -124,7 +124,7 @@ export default function SettingsPage({
     recognition.start();
   };
 
-  // 📱 Phone Validation Helper
+  // Phone Validation Helper
   const validatePhone = (phone) => {
     const phoneClean = phone.replace(/\s+/g, "");
     const phoneRegex = /^(0\d{10}|\+234\d{10})$/;
@@ -196,7 +196,7 @@ export default function SettingsPage({
   const pregnancyMonth = Math.ceil((user?.week || 24) / 4);
 
   // ==========================================
-  // VIEW: EDIT PROFILE FORM (Sub-page)
+  // VIEW: EDIT PROFILE FORM
   // ==========================================
   if (isEditing) {
     return (

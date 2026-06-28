@@ -62,7 +62,6 @@ export default function PregnancyGuide({ user, onBack, language }) {
     setIsPaused(false);
   };
 
-  // FIXED: Now pulling dynamically from data.js based on the selected language
   const pregnancyTimeline =
     PREGNANCY_GUIDE_DATA[language] || PREGNANCY_GUIDE_DATA.en;
 
